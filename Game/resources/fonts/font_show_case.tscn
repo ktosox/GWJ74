@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://c54ikxoa38c01"]
+
+[ext_resource type="FontFile" uid="uid://n4p1owuaodks" path="res://resources/fonts/classic_memesbruh03.ttf" id="1_x1g10"]
+[ext_resource type="FontFile" uid="uid://buu01vh51e0y8" path="res://resources/fonts/CommodoreServer.ttf" id="2_id0c5"]
+[ext_resource type="FontFile" uid="uid://dmpexfosocgea" path="res://resources/fonts/FreudianSlip.ttf" id="3_6fock"]
+[ext_resource type="FontFile" uid="uid://chpylqhq4ka8d" path="res://resources/fonts/HydratingLip.ttf" id="4_l2jwr"]
+
+[node name="FontShowCase" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Classic" type="Label" parent="."]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 164.0
+offset_right = 549.0
+offset_bottom = 243.0
+theme_override_fonts/font = ExtResource("1_x1g10")
+theme_override_font_sizes/font_size = 32
+text = "ABCDER
+abder
+123345"
+
+[node name="CommodoreServer" type="Label" parent="."]
+layout_mode = 0
+offset_left = 306.0
+offset_top = 37.0
+offset_right = 498.0
+offset_bottom = 139.0
+theme_override_fonts/font = ExtResource("2_id0c5")
+theme_override_font_sizes/font_size = 32
+text = "ABCDEF
+abcdef
+12345"
+
+[node name="Slip" type="Label" parent="."]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 217.0
+offset_right = 298.0
+offset_bottom = 403.0
+theme_override_fonts/font = ExtResource("3_6fock")
+theme_override_font_sizes/font_size = 60
+text = "ABCDEF
+abcdef
+12345"
+
+[node name="Hydrating" type="Label" parent="."]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 46.0
+offset_right = 230.0
+offset_bottom = 157.0
+theme_override_fonts/font = ExtResource("4_l2jwr")
+theme_override_font_sizes/font_size = 32
+text = "ABCEDF
+abcdef
+12345"

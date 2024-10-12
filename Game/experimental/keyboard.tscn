@@ -1,0 +1,154 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1sqmxngckw8a"]
+
+[ext_resource type="Script" path="res://experimental/keyboard.gd" id="1_sdln5"]
+
+[node name="Keyboard" type="ColorRect"]
+offset_left = 61.0
+offset_top = 449.0
+offset_right = 531.0
+offset_bottom = 775.0
+color = Color(0.172549, 0.470588, 0.470588, 1)
+script = ExtResource("1_sdln5")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -222.0
+offset_top = -94.0
+offset_right = 222.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 10
+
+[node name="Character" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character2" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character3" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character4" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character5" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character17" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character18" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character19" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character20" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character21" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character6" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character7" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character8" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character22" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character23" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character24" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character25" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character26" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character27" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character28" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character29" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character30" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character9" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character10" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character11" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character12" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character13" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character14" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character15" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Character16" type="ColorRect" parent="GridContainer"]
+custom_minimum_size = Vector2(42, 60)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 162.0
+offset_top = 22.0
+offset_right = 252.0
+offset_bottom = 45.0
+text = "Enter name"
