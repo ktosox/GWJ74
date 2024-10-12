@@ -1,73 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1sqmxngckw8a"]
+[gd_scene load_steps=3 format=3 uid="uid://b1sqmxngckw8a"]
 
 [ext_resource type="Script" path="res://experimental/keyboard.gd" id="1_sdln5"]
 [ext_resource type="PackedScene" uid="uid://bjymjbuv5bb6e" path="res://experimental/character.tscn" id="2_22lgf"]
-[ext_resource type="FontFile" uid="uid://n4p1owuaodks" path="res://resources/fonts/classic_memesbruh03.ttf" id="3_ckif6"]
-
-[sub_resource type="Animation" id="Animation_cc3c0"]
-resource_name = "new_animation"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
-}
-
-[sub_resource type="Animation" id="Animation_4om2w"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_4iqu5"]
-_data = {
-"RESET": SubResource("Animation_4om2w"),
-"new_animation": SubResource("Animation_cc3c0")
-}
-
-[sub_resource type="Animation" id="Animation_10jyo"]
-resource_name = "new_animation"
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"load_map"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vtfpk"]
-_data = {
-"new_animation": SubResource("Animation_10jyo")
-}
 
 [node name="Keyboard" type="ColorRect"]
-offset_left = 65.0
-offset_top = 399.0
-offset_right = 535.0
-offset_bottom = 774.0
+offset_left = 61.0
+offset_top = 400.0
+offset_right = 531.0
+offset_bottom = 775.0
 color = Color(0.172549, 0.470588, 0.470588, 1)
 script = ExtResource("1_sdln5")
 
@@ -78,13 +18,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -205.0
-offset_top = -140.5
-offset_right = 205.0
-offset_bottom = 159.5
+offset_left = -229.0
+offset_top = -107.0
+offset_right = 227.0
+offset_bottom = 117.0
 grow_horizontal = 2
 grow_vertical = 2
-columns = 9
+columns = 10
 
 [node name="Character" parent="GridContainer" instance=ExtResource("2_22lgf")]
 layout_mode = 2
@@ -194,6 +134,9 @@ layout_mode = 2
 [node name="Character36" parent="GridContainer" instance=ExtResource("2_22lgf")]
 layout_mode = 2
 
+[node name="Character37" parent="GridContainer" instance=ExtResource("2_22lgf")]
+layout_mode = 2
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 186.0
@@ -203,31 +146,8 @@ offset_bottom = 29.0
 text = "Enter name"
 
 [node name="Selector" type="Node2D" parent="."]
-position = Vector2(30, 47)
+position = Vector2(26, 92)
 
-[node name="Blinker" type="AnimationPlayer" parent="Selector"]
-libraries = {
-"": SubResource("AnimationLibrary_4iqu5")
-}
-autoplay = "new_animation"
-
-[node name="Label" type="Label" parent="Selector"]
-offset_left = 46.0
-offset_top = 47.0
-offset_right = 86.0
-offset_bottom = 90.0
-rotation = 1.5708
-theme_override_fonts/font = ExtResource("3_ckif6")
-theme_override_font_sizes/font_size = 64
-text = "<"
-
-[node name="MoveTimer" type="Timer" parent="."]
-wait_time = 0.3
-
-[node name="Load" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_vtfpk")
-}
-autoplay = "new_animation"
-
-[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[node name="Line2D" type="Line2D" parent="Selector"]
+points = PackedVector2Array(-10, 16, 0, 0, 10, 16)
+width = 8.0

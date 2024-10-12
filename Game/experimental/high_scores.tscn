@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://dfp8hqfluengq"]
+
+[node name="HighScores" type="ColorRect"]
+offset_left = 49.0
+offset_top = 45.0
+offset_right = 563.0
+offset_bottom = 363.0
+color = Color(0.192964, 0.0298431, 0.0298609, 1)
+
+[node name="Layout" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 37.0
+offset_right = 479.0
+offset_bottom = 294.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Layout"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Layout/HBoxContainer"]
+layout_mode = 2
+text = "1."
+
+[node name="Label2" type="Label" parent="Layout/HBoxContainer"]
+layout_mode = 2
+text = "adasdadada"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Layout"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Layout/HBoxContainer2"]
+layout_mode = 2
+text = "2."
+
+[node name="Label2" type="Label" parent="Layout/HBoxContainer2"]
+layout_mode = 2
+text = "adasdadada"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Layout"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Layout/HBoxContainer3"]
+layout_mode = 2
+text = "3."
+
+[node name="Label2" type="Label" parent="Layout/HBoxContainer3"]
+layout_mode = 2
+text = "adasdadada"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Layout"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Layout/HBoxContainer4"]
+layout_mode = 2
+text = "4."
+
+[node name="Label2" type="Label" parent="Layout/HBoxContainer4"]
+layout_mode = 2
+text = "adasdadada"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Layout"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Layout/HBoxContainer5"]
+layout_mode = 2
+text = "5."
+
+[node name="Label2" type="Label" parent="Layout/HBoxContainer5"]
+layout_mode = 2
+text = "adasdadada"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="Layout"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Layout/HBoxContainer6"]
+layout_mode = 2
+text = "6."
+
+[node name="Label2" type="Label" parent="Layout/HBoxContainer6"]
+layout_mode = 2
+text = "adasdadada"
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="Layout"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Layout/HBoxContainer7"]
+layout_mode = 2
+text = "7."
+
+[node name="Label2" type="Label" parent="Layout/HBoxContainer7"]
+layout_mode = 2
+text = "adasdadada"
