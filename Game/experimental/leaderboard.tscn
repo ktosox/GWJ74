@@ -8,7 +8,6 @@
 [node name="Keyboard" parent="." instance=ExtResource("1_mfhsa")]
 
 [node name="HighScores" parent="." instance=ExtResource("2_uxsp0")]
-offset_left = 41.0
-offset_top = 113.0
-offset_right = 555.0
-offset_bottom = 350.0
+offset_left = 16.0
+offset_top = 109.0
+offset_bottom = 346.0

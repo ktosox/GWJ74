@@ -4,47 +4,47 @@
 [ext_resource type="Script" path="res://experimental/high_scores.gd" id="1_t6u1j"]
 
 [node name="HighScores" type="ColorRect"]
-offset_left = 49.0
+offset_left = 27.0
 offset_top = 45.0
-offset_right = 563.0
+offset_right = 569.0
 offset_bottom = 282.0
 color = Color(0.192964, 0.0298431, 0.0298609, 1)
 script = ExtResource("1_t6u1j")
 
-[node name="Layout" type="GridContainer" parent="."]
-layout_mode = 2
-offset_left = 5.0
-offset_top = 12.0
-offset_right = 541.0
-offset_bottom = 275.0
-columns = 2
+[node name="LayoutLeft" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = -5.0
+offset_top = 4.0
+offset_right = 248.0
+offset_bottom = 215.0
 
-[node name="Score" parent="Layout" instance=ExtResource("1_mugo3")]
-layout_mode = 2
-
-[node name="Score2" parent="Layout" instance=ExtResource("1_mugo3")]
+[node name="Score" parent="LayoutLeft" instance=ExtResource("1_mugo3")]
 layout_mode = 2
 
-[node name="Score3" parent="Layout" instance=ExtResource("1_mugo3")]
+[node name="Score2" parent="LayoutLeft" instance=ExtResource("1_mugo3")]
 layout_mode = 2
 
-[node name="Score4" parent="Layout" instance=ExtResource("1_mugo3")]
+[node name="Score3" parent="LayoutLeft" instance=ExtResource("1_mugo3")]
 layout_mode = 2
 
-[node name="Score5" parent="Layout" instance=ExtResource("1_mugo3")]
+[node name="Score4" parent="LayoutLeft" instance=ExtResource("1_mugo3")]
 layout_mode = 2
 
-[node name="Score6" parent="Layout" instance=ExtResource("1_mugo3")]
+[node name="LayoutRight" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 276.0
+offset_top = 9.0
+offset_right = 529.0
+offset_bottom = 220.0
+
+[node name="Score5" parent="LayoutRight" instance=ExtResource("1_mugo3")]
 layout_mode = 2
 
-[node name="Score7" parent="Layout" instance=ExtResource("1_mugo3")]
+[node name="Score6" parent="LayoutRight" instance=ExtResource("1_mugo3")]
 layout_mode = 2
 
-[node name="Score8" parent="Layout" instance=ExtResource("1_mugo3")]
+[node name="Score7" parent="LayoutRight" instance=ExtResource("1_mugo3")]
 layout_mode = 2
 
-[node name="Score9" parent="Layout" instance=ExtResource("1_mugo3")]
-layout_mode = 2
-
-[node name="Score10" parent="Layout" instance=ExtResource("1_mugo3")]
+[node name="Score8" parent="LayoutRight" instance=ExtResource("1_mugo3")]
 layout_mode = 2
