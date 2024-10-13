@@ -2,6 +2,8 @@ extends ColorRect
 
 var score_scene = preload("res://experimental/score.tscn")
 
+var last_score
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 
@@ -28,7 +30,7 @@ func _ready() -> void:
 		#score.set_index_number(score_value)
 	#pass
 
-func update_order():
+func update_order(): # oK
 	var index_number = 1
 	for left_score in $LayoutLeft.get_children():
 		left_score.set_index_number(index_number)
@@ -38,6 +40,7 @@ func update_order():
 		index_number += 1
 	pass
 	
+
 
 
 func insert_new_score(index : int) -> Node:
@@ -54,4 +57,12 @@ func insert_new_score(index : int) -> Node:
 	$LayoutRight.get_child(4).queue_free()
 	update_order()
 	return new_score
+	pass
+
+func create_score(points : int) -> void:
+	
+	pass
+
+func pass_key_to_last_score(key : String) -> void:
+	
 	pass
