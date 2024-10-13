@@ -1,92 +1,50 @@
-[gd_scene format=3 uid="uid://dfp8hqfluengq"]
+[gd_scene load_steps=3 format=3 uid="uid://dfp8hqfluengq"]
+
+[ext_resource type="PackedScene" uid="uid://ddn21uypv54ep" path="res://experimental/score.tscn" id="1_mugo3"]
+[ext_resource type="Script" path="res://experimental/high_scores.gd" id="1_t6u1j"]
 
 [node name="HighScores" type="ColorRect"]
 offset_left = 49.0
 offset_top = 45.0
 offset_right = 563.0
-offset_bottom = 363.0
+offset_bottom = 282.0
 color = Color(0.192964, 0.0298431, 0.0298609, 1)
+script = ExtResource("1_t6u1j")
 
-[node name="Layout" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 44.0
-offset_top = 37.0
-offset_right = 479.0
-offset_bottom = 294.0
+[node name="Layout" type="GridContainer" parent="."]
+layout_mode = 2
+offset_left = 5.0
+offset_top = 12.0
+offset_right = 541.0
+offset_bottom = 275.0
+columns = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Layout"]
+[node name="Score" parent="Layout" instance=ExtResource("1_mugo3")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Layout/HBoxContainer"]
-layout_mode = 2
-text = "1."
-
-[node name="Label2" type="Label" parent="Layout/HBoxContainer"]
-layout_mode = 2
-text = "adasdadada"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Layout"]
+[node name="Score2" parent="Layout" instance=ExtResource("1_mugo3")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Layout/HBoxContainer2"]
-layout_mode = 2
-text = "2."
-
-[node name="Label2" type="Label" parent="Layout/HBoxContainer2"]
-layout_mode = 2
-text = "adasdadada"
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="Layout"]
+[node name="Score3" parent="Layout" instance=ExtResource("1_mugo3")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Layout/HBoxContainer3"]
-layout_mode = 2
-text = "3."
-
-[node name="Label2" type="Label" parent="Layout/HBoxContainer3"]
-layout_mode = 2
-text = "adasdadada"
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="Layout"]
+[node name="Score4" parent="Layout" instance=ExtResource("1_mugo3")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Layout/HBoxContainer4"]
-layout_mode = 2
-text = "4."
-
-[node name="Label2" type="Label" parent="Layout/HBoxContainer4"]
-layout_mode = 2
-text = "adasdadada"
-
-[node name="HBoxContainer5" type="HBoxContainer" parent="Layout"]
+[node name="Score5" parent="Layout" instance=ExtResource("1_mugo3")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Layout/HBoxContainer5"]
-layout_mode = 2
-text = "5."
-
-[node name="Label2" type="Label" parent="Layout/HBoxContainer5"]
-layout_mode = 2
-text = "adasdadada"
-
-[node name="HBoxContainer6" type="HBoxContainer" parent="Layout"]
+[node name="Score6" parent="Layout" instance=ExtResource("1_mugo3")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Layout/HBoxContainer6"]
-layout_mode = 2
-text = "6."
-
-[node name="Label2" type="Label" parent="Layout/HBoxContainer6"]
-layout_mode = 2
-text = "adasdadada"
-
-[node name="HBoxContainer7" type="HBoxContainer" parent="Layout"]
+[node name="Score7" parent="Layout" instance=ExtResource("1_mugo3")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Layout/HBoxContainer7"]
+[node name="Score8" parent="Layout" instance=ExtResource("1_mugo3")]
 layout_mode = 2
-text = "7."
 
-[node name="Label2" type="Label" parent="Layout/HBoxContainer7"]
+[node name="Score9" parent="Layout" instance=ExtResource("1_mugo3")]
 layout_mode = 2
-text = "adasdadada"
+
+[node name="Score10" parent="Layout" instance=ExtResource("1_mugo3")]
+layout_mode = 2

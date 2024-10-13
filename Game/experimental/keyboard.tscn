@@ -2,7 +2,22 @@
 
 [ext_resource type="Script" path="res://experimental/keyboard.gd" id="1_sdln5"]
 [ext_resource type="PackedScene" uid="uid://bjymjbuv5bb6e" path="res://experimental/character.tscn" id="2_22lgf"]
-[ext_resource type="FontFile" uid="uid://n4p1owuaodks" path="res://resources/fonts/classic_memesbruh03.ttf" id="3_ckif6"]
+[ext_resource type="Theme" uid="uid://em0x4hcgcgxj" path="res://experimental/basic_font.tres" id="3_vo3tf"]
+
+[sub_resource type="Animation" id="Animation_4om2w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_cc3c0"]
 resource_name = "new_animation"
@@ -18,21 +33,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
-}
-
-[sub_resource type="Animation" id="Animation_4om2w"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4iqu5"]
@@ -212,13 +212,12 @@ libraries = {
 autoplay = "new_animation"
 
 [node name="Label" type="Label" parent="Selector"]
-offset_left = 46.0
-offset_top = 47.0
-offset_right = 86.0
-offset_bottom = 90.0
+offset_left = 43.0
+offset_top = 46.0
+offset_right = 83.0
+offset_bottom = 89.0
 rotation = 1.5708
-theme_override_fonts/font = ExtResource("3_ckif6")
-theme_override_font_sizes/font_size = 64
+theme = ExtResource("3_vo3tf")
 text = "<"
 
 [node name="MoveTimer" type="Timer" parent="."]

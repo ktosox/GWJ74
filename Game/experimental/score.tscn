@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://ddn21uypv54ep"]
+
+[ext_resource type="Script" path="res://experimental/score.gd" id="1_algqp"]
+[ext_resource type="Theme" uid="uid://em0x4hcgcgxj" path="res://experimental/basic_font.tres" id="2_y6xgt"]
+
+[sub_resource type="Animation" id="Animation_3plh4"]
+resource_name = "blink"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_1w2xs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gxr3w"]
+_data = {
+"RESET": SubResource("Animation_1w2xs"),
+"blink": SubResource("Animation_3plh4")
+}
+
+[node name="Score" type="HBoxContainer"]
+size_flags_horizontal = 3
+script = ExtResource("1_algqp")
+
+[node name="Number" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("2_y6xgt")
+text = "1."
+
+[node name="StoredName" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("2_y6xgt")
+text = "ABCDEF"
+
+[node name="BlinkyLine" type="Label" parent="."]
+visible = false
+layout_mode = 2
+theme = ExtResource("2_y6xgt")
+text = "_"
+
+[node name="Blinker" type="AnimationPlayer" parent="BlinkyLine"]
+libraries = {
+"": SubResource("AnimationLibrary_gxr3w")
+}

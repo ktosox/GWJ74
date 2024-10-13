@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bjymjbuv5bb6e"]
 
 [ext_resource type="Script" path="res://experimental/character.gd" id="1_6ayj4"]
-[ext_resource type="FontFile" uid="uid://n4p1owuaodks" path="res://resources/fonts/classic_memesbruh03.ttf" id="1_xf0vg"]
+[ext_resource type="Theme" uid="uid://em0x4hcgcgxj" path="res://experimental/basic_font.tres" id="2_nt837"]
 
 [node name="Character" type="ColorRect"]
 custom_minimum_size = Vector2(42, 72)
@@ -17,7 +17,6 @@ offset_left = 6.0
 offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_xf0vg")
-theme_override_font_sizes/font_size = 64
+theme = ExtResource("2_nt837")
 text = "A"
 horizontal_alignment = 1
