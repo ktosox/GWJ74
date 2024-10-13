@@ -1,0 +1,238 @@
+[gd_scene load_steps=8 format=3 uid="uid://ca7bhjj8migcc"]
+
+[ext_resource type="Theme" uid="uid://7mmlar7dbofy" path="res://resources/fonts/welcome_font.tres" id="1_jl3sd"]
+[ext_resource type="Script" path="res://experimental/welcome_screen.gd" id="1_rlqjn"]
+[ext_resource type="FontFile" uid="uid://buu01vh51e0y8" path="res://resources/fonts/CommodoreServer.ttf" id="2_pvntt"]
+
+[sub_resource type="Animation" id="Animation_7qxvc"]
+resource_name = "start"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Warning:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_l0ypd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Warning:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_58v4k"]
+_data = {
+"RESET": SubResource("Animation_l0ypd"),
+"start": SubResource("Animation_7qxvc")
+}
+
+[sub_resource type="Theme" id="Theme_txnar"]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("2_pvntt")
+
+[node name="WelcomeScreen" type="CanvasLayer"]
+script = ExtResource("1_rlqjn")
+
+[node name="Intro" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_58v4k")
+}
+autoplay = "start"
+
+[node name="Warning" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.129931, 0.128988, 0.498301, 1)
+
+[node name="Label" type="Label" parent="Warning"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 122.0
+offset_right = 622.0
+offset_bottom = 212.0
+theme = ExtResource("1_jl3sd")
+text = "this game contains:
+
+* fast moving objects
+
+* flashing images
+
+* minor jump scares"
+uppercase = true
+
+[node name="InputSetup" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.558766, 0.0658079, 1.44392e-07, 1)
+
+[node name="Label" type="Label" parent="InputSetup"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 116.0
+offset_right = 541.0
+offset_bottom = 140.0
+theme = ExtResource("1_jl3sd")
+text = "these are the inputs:"
+uppercase = true
+
+[node name="Label2" type="Label" parent="InputSetup"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 580.0
+offset_right = 554.0
+offset_bottom = 712.0
+theme = ExtResource("1_jl3sd")
+text = "enter the code below 
+to power up your
+super phase boosters
+
+ -> -> B <- A"
+uppercase = true
+
+[node name="Label3" type="Label" parent="InputSetup"]
+visible = false
+layout_mode = 0
+offset_left = 101.0
+offset_top = 439.0
+offset_right = 461.0
+offset_bottom = 463.0
+theme = ExtResource("1_jl3sd")
+text = "press to change"
+uppercase = true
+
+[node name="Label4" type="Label" parent="InputSetup"]
+layout_mode = 0
+offset_left = 194.0
+offset_top = 202.0
+offset_right = 242.0
+offset_bottom = 226.0
+theme = ExtResource("1_jl3sd")
+text = "->"
+uppercase = true
+
+[node name="Label5" type="Label" parent="InputSetup"]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 199.0
+offset_right = 111.0
+offset_bottom = 223.0
+theme = ExtResource("1_jl3sd")
+text = "<-"
+uppercase = true
+
+[node name="Label6" type="Label" parent="InputSetup"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 358.0
+offset_right = 121.0
+offset_bottom = 382.0
+rotation = 4.71239
+theme = ExtResource("1_jl3sd")
+text = "->"
+uppercase = true
+
+[node name="Label7" type="Label" parent="InputSetup"]
+layout_mode = 0
+offset_left = 230.0
+offset_top = 309.0
+offset_right = 278.0
+offset_bottom = 333.0
+rotation = 1.5708
+theme = ExtResource("1_jl3sd")
+text = "->"
+uppercase = true
+
+[node name="Label12" type="Label" parent="InputSetup"]
+layout_mode = 0
+offset_left = 359.0
+offset_top = 202.0
+offset_right = 551.0
+offset_bottom = 226.0
+theme = ExtResource("1_jl3sd")
+text = "button a"
+uppercase = true
+
+[node name="Label13" type="Label" parent="InputSetup"]
+layout_mode = 0
+offset_left = 359.0
+offset_top = 326.0
+offset_right = 551.0
+offset_bottom = 350.0
+theme = ExtResource("1_jl3sd")
+text = "button b"
+uppercase = true
+
+[node name="Button" type="Button" parent="InputSetup"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 244.0
+offset_right = 132.0
+offset_bottom = 284.0
+theme = SubResource("Theme_txnar")
+text = "A"
+
+[node name="Button4" type="Button" parent="InputSetup"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 372.0
+offset_right = 134.0
+offset_bottom = 412.0
+theme = SubResource("Theme_txnar")
+text = "W"
+
+[node name="Button5" type="Button" parent="InputSetup"]
+layout_mode = 0
+offset_left = 183.0
+offset_top = 374.0
+offset_right = 275.0
+offset_bottom = 414.0
+theme = SubResource("Theme_txnar")
+text = "S"
+
+[node name="Button6" type="Button" parent="InputSetup"]
+layout_mode = 0
+offset_left = 366.0
+offset_top = 376.0
+offset_right = 534.0
+offset_bottom = 416.0
+theme = SubResource("Theme_txnar")
+text = "SHIFT"
+
+[node name="Button2" type="Button" parent="InputSetup"]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 242.0
+offset_right = 271.0
+offset_bottom = 282.0
+theme = SubResource("Theme_txnar")
+text = "D"
+
+[node name="Button3" type="Button" parent="InputSetup"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 243.0
+offset_right = 528.0
+offset_bottom = 283.0
+theme = SubResource("Theme_txnar")
+text = "SPACE"

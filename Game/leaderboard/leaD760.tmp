@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://nmnnn7onxbg0"]
 
-[ext_resource type="PackedScene" uid="uid://b1sqmxngckw8a" path="res://experimental/keyboard.tscn" id="1_mfhsa"]
-[ext_resource type="PackedScene" uid="uid://dfp8hqfluengq" path="res://experimental/high_scores.tscn" id="2_uxsp0"]
+[ext_resource type="PackedScene" uid="uid://b1sqmxngckw8a" path="res://leaderboard/keyboard.tscn" id="1_mfhsa"]
+[ext_resource type="PackedScene" uid="uid://dfp8hqfluengq" path="res://leaderboard/high_scores.tscn" id="2_uxsp0"]
 
 [node name="Leaderboard" type="CanvasLayer"]
 

@@ -1,6 +1,6 @@
 extends ColorRect
 
-var score_scene = preload("res://experimental/score.tscn")
+var score_scene = preload("res://leaderboard/score.tscn")
 
 var last_score
 

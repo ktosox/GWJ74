@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dfp8hqfluengq"]
 
-[ext_resource type="PackedScene" uid="uid://ddn21uypv54ep" path="res://experimental/score.tscn" id="1_mugo3"]
-[ext_resource type="Script" path="res://experimental/high_scores.gd" id="1_t6u1j"]
+[ext_resource type="PackedScene" uid="uid://ddn21uypv54ep" path="res://leaderboard/score.tscn" id="1_mugo3"]
+[ext_resource type="Script" path="res://leaderboard/high_scores.gd" id="1_t6u1j"]
 
 [node name="HighScores" type="ColorRect"]
 offset_left = 27.0

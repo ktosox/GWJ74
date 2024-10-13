@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://nmnnn7onxbg0"]
+
+[ext_resource type="PackedScene" uid="uid://b1sqmxngckw8a" path="res://leaderboard/keyboard.tscn" id="1_mfhsa"]
+[ext_resource type="PackedScene" uid="uid://dfp8hqfluengq" path="res://leaderboard/high_scores.tscn" id="2_uxsp0"]
+
+[node name="Leaderboard" type="CanvasLayer"]
+
+[node name="Keyboard" parent="." instance=ExtResource("1_mfhsa")]
+
+[node name="HighScores" parent="." instance=ExtResource("2_uxsp0")]
+offset_left = 16.0
+offset_top = 109.0
+offset_bottom = 346.0

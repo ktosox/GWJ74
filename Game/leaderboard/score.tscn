@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://ddn21uypv54ep"]
 
-[ext_resource type="Script" path="res://experimental/score.gd" id="1_algqp"]
-[ext_resource type="Theme" uid="uid://em0x4hcgcgxj" path="res://experimental/basic_font.tres" id="2_y6xgt"]
+[ext_resource type="Script" path="res://leaderboard/score.gd" id="1_algqp"]
+[ext_resource type="Theme" uid="uid://em0x4hcgcgxj" path="res://resources/fonts/basic_font.tres" id="2_y6xgt"]
 
 [sub_resource type="Animation" id="Animation_1w2xs"]
 length = 0.001

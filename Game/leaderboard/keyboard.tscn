@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://b1sqmxngckw8a"]
 
-[ext_resource type="Script" path="res://experimental/keyboard.gd" id="1_sdln5"]
-[ext_resource type="PackedScene" uid="uid://bjymjbuv5bb6e" path="res://experimental/character.tscn" id="2_22lgf"]
-[ext_resource type="Theme" uid="uid://em0x4hcgcgxj" path="res://experimental/basic_font.tres" id="3_vo3tf"]
+[ext_resource type="Script" path="res://leaderboard/keyboard.gd" id="1_sdln5"]
+[ext_resource type="PackedScene" uid="uid://bjymjbuv5bb6e" path="res://leaderboard/character.tscn" id="2_22lgf"]
+[ext_resource type="Theme" uid="uid://em0x4hcgcgxj" path="res://resources/fonts/basic_font.tres" id="3_vo3tf"]
 
 [sub_resource type="Animation" id="Animation_4om2w"]
 length = 0.001

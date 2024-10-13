@@ -69,7 +69,7 @@ func move_selector() -> void:
 func load_map():
 	for character in $GridContainer.get_children():
 		position_to_character_map[character.position] = character
-	print(position_to_character_map)
+	#print(position_to_character_map)
 	pass
 
 
