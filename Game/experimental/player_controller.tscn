@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmfs7ntje0ay6"]
+
+[ext_resource type="Script" path="res://experimental/player_controller.gd" id="1_ugusn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1nsbu"]
+emission_enabled = true
+emission = Color(0.945394, 2.40654e-06, 0.570148, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="PrismMesh" id="PrismMesh_7cuty"]
+material = SubResource("StandardMaterial3D_1nsbu")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w8qya"]
+
+[node name="PlayerController" type="CharacterBody3D"]
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+motion_mode = 1
+script = ExtResource("1_ugusn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PrismMesh_7cuty")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_w8qya")

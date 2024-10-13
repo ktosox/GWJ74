@@ -1,8 +1,23 @@
 [gd_scene load_steps=8 format=3 uid="uid://ca7bhjj8migcc"]
 
 [ext_resource type="Theme" uid="uid://7mmlar7dbofy" path="res://resources/fonts/welcome_font.tres" id="1_jl3sd"]
-[ext_resource type="Script" path="res://experimental/welcome_screen.gd" id="1_rlqjn"]
+[ext_resource type="Script" path="res://welcome/welcome_screen.gd" id="1_rlqjn"]
 [ext_resource type="FontFile" uid="uid://buu01vh51e0y8" path="res://resources/fonts/CommodoreServer.ttf" id="2_pvntt"]
+
+[sub_resource type="Animation" id="Animation_l0ypd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Warning:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_7qxvc"]
 resource_name = "start"
@@ -18,21 +33,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_l0ypd"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Warning:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_58v4k"]
@@ -54,37 +54,13 @@ libraries = {
 }
 autoplay = "start"
 
-[node name="Warning" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.129931, 0.128988, 0.498301, 1)
-
-[node name="Label" type="Label" parent="Warning"]
-layout_mode = 0
-offset_left = 34.0
-offset_top = 122.0
-offset_right = 622.0
-offset_bottom = 212.0
-theme = ExtResource("1_jl3sd")
-text = "this game contains:
-
-* fast moving objects
-
-* flashing images
-
-* minor jump scares"
-uppercase = true
-
 [node name="InputSetup" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.558766, 0.0658079, 1.44392e-07, 1)
+color = Color(0.136782, 0.248637, 0, 1)
 
 [node name="Label" type="Label" parent="InputSetup"]
 layout_mode = 0
@@ -236,3 +212,26 @@ offset_right = 528.0
 offset_bottom = 283.0
 theme = SubResource("Theme_txnar")
 text = "SPACE"
+
+[node name="Warning" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.129931, 0.128988, 0.498301, 1)
+
+[node name="Label" type="Label" parent="Warning"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 122.0
+offset_right = 622.0
+offset_bottom = 212.0
+theme = ExtResource("1_jl3sd")
+text = "this game contains:
+
+* fast moving objects
+
+* flashing images
+"
+uppercase = true

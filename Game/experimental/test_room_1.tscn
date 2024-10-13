@@ -1,0 +1,176 @@
+[gd_scene load_steps=15 format=3 uid="uid://cqxedbhhrmr4s"]
+
+[ext_resource type="PackedScene" uid="uid://cmfs7ntje0ay6" path="res://experimental/player_controller.tscn" id="1_10j6n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8mkr8"]
+emission_enabled = true
+emission = Color(0.443137, 1, 1, 1)
+emission_energy_multiplier = 4.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lvhdi"]
+material = SubResource("StandardMaterial3D_8mkr8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ilp2s"]
+emission_enabled = true
+emission = Color(0.945394, 2.40654e-06, 0.570148, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_sbvuo"]
+material = SubResource("StandardMaterial3D_ilp2s")
+
+[sub_resource type="Environment" id="Environment_odgyf"]
+background_mode = 1
+background_color = Color(0.254902, 0.231373, 0.611765, 1)
+background_energy_multiplier = 0.5
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+tonemap_exposure = 0.3
+glow_enabled = true
+glow_intensity = 0.63
+glow_strength = 0.61
+glow_bloom = 1.0
+glow_blend_mode = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e4mt3"]
+albedo_color = Color(0.646029, 0.646029, 0.646029, 1)
+metallic_specular = 0.0
+roughness = 0.0
+emission_energy_multiplier = 4.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_wfe5n"]
+material = SubResource("StandardMaterial3D_e4mt3")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tk620"]
+size = Vector3(6, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0cqjv"]
+size = Vector3(6, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cpkfg"]
+size = Vector3(1, 8, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ml0yo"]
+size = Vector3(1, 8, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hu7bl"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8yqai"]
+material = SubResource("StandardMaterial3D_hu7bl")
+top_radius = 0.1
+bottom_radius = 0.02
+height = 3.0
+radial_segments = 8
+rings = 8
+cap_top = false
+cap_bottom = false
+
+[node name="TestRoom1" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+size = 0.1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.44, -1.105, 0.1)
+visible = false
+mesh = SubResource("CylinderMesh_lvhdi")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.175, -0.813745, 0)
+visible = false
+mesh = SubResource("CylinderMesh_sbvuo")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_odgyf")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("BoxMesh_wfe5n")
+
+[node name="PlayerController" parent="." instance=ExtResource("1_10j6n")]
+
+[node name="Walls" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5, 0)
+shape = SubResource("BoxShape3D_tk620")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/CollisionShape3D"]
+mesh = SubResource("BoxMesh_0cqjv")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 0)
+shape = SubResource("BoxShape3D_cpkfg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/CollisionShape3D3"]
+mesh = SubResource("BoxMesh_ml0yo")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 0)
+shape = SubResource("BoxShape3D_cpkfg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/CollisionShape3D4"]
+mesh = SubResource("BoxMesh_ml0yo")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 0)
+shape = SubResource("BoxShape3D_tk620")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/CollisionShape3D2"]
+mesh = SubResource("BoxMesh_0cqjv")
+
+[node name="Line" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3, 0, 0.5)
+mesh = SubResource("CylinderMesh_8yqai")
+
+[node name="Line2" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3, -4, 0.5)
+mesh = SubResource("CylinderMesh_8yqai")
+
+[node name="Line4" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3, -2, 0.5)
+mesh = SubResource("CylinderMesh_8yqai")
+
+[node name="Line3" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3, 2, 0.5)
+mesh = SubResource("CylinderMesh_8yqai")
+
+[node name="Line12" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, 0, 0.5)
+mesh = SubResource("CylinderMesh_8yqai")
+
+[node name="Line13" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, -2, 0.5)
+mesh = SubResource("CylinderMesh_8yqai")
+
+[node name="Line14" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, 2, 0.5)
+mesh = SubResource("CylinderMesh_8yqai")
+
+[node name="Line5" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3, 4, 0.5)
+mesh = SubResource("CylinderMesh_8yqai")
+
+[node name="Line6" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1, 4, 0.5)
+mesh = SubResource("CylinderMesh_8yqai")
+
+[node name="Line7" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1, 4, 0.5)
+mesh = SubResource("CylinderMesh_8yqai")
+
+[node name="Line8" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, 4, 0.5)
+mesh = SubResource("CylinderMesh_8yqai")
+
+[node name="Line9" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1, -4, 0.5)
+mesh = SubResource("CylinderMesh_8yqai")
+
+[node name="Line10" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1, -4, 0.5)
+mesh = SubResource("CylinderMesh_8yqai")
+
+[node name="Line11" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, -4, 0.5)
+mesh = SubResource("CylinderMesh_8yqai")
