@@ -1,0 +1,166 @@
+[gd_scene load_steps=12 format=3 uid="uid://ccvm061b7e5vh"]
+
+[sub_resource type="Animation" id="Animation_6bi6a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InnerRing:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InnerRing:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6bocv"]
+resource_name = "new_animation"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InnerRing:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(0.1, 0.1, 0.1), Vector3(12, 12, 12)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InnerRing:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector3(0, 0, -35), Vector3(0, 0, 4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vxyps"]
+_data = {
+"RESET": SubResource("Animation_6bi6a"),
+"new_animation": SubResource("Animation_6bocv")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_si4xc"]
+albedo_color = Color(0.0462653, 0.216254, 0.0441398, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_j1bxo"]
+material = SubResource("StandardMaterial3D_si4xc")
+flip_faces = true
+top_radius = 0.9
+bottom_radius = 0.8
+height = 0.4
+radial_segments = 12
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ohxj"]
+albedo_color = Color(0.074508, 0.356071, 0.487583, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_q54sh"]
+material = SubResource("StandardMaterial3D_2ohxj")
+flip_faces = true
+top_radius = 0.8
+bottom_radius = 0.7
+height = 0.4
+radial_segments = 12
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="Animation" id="Animation_3lu33"]
+resource_name = "left"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InnerRing/OuterRing:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_od5bd"]
+resource_name = "right"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InnerRing/OuterRing:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_msw26"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InnerRing/OuterRing:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_levxf"]
+_data = {
+"RESET": SubResource("Animation_msw26"),
+"left": SubResource("Animation_3lu33"),
+"right": SubResource("Animation_od5bd")
+}
+
+[node name="CoolPassRing" type="Node3D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vxyps")
+}
+autoplay = "new_animation"
+
+[node name="InnerRing" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_j1bxo")
+
+[node name="OuterRing" type="MeshInstance3D" parent="InnerRing"]
+mesh = SubResource("CylinderMesh_q54sh")
+skeleton = NodePath("../../..")
+
+[node name="Spinner" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_levxf")
+}

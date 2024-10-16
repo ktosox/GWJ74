@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://x15rbo2t7ghf"]
+
+[ext_resource type="Script" path="res://leaderboard/keyboard_test.gd" id="1_8l658"]
+[ext_resource type="PackedScene" uid="uid://b1sqmxngckw8a" path="res://leaderboard/keyboard.tscn" id="2_a3dvd"]
+
+[node name="KeyboardTest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8l658")
+
+[node name="Keyboard" parent="." instance=ExtResource("2_a3dvd")]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 396.0
+offset_right = 523.0
+offset_bottom = 771.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="key_removed" from="Keyboard" to="." method="_on_keyboard_key_removed"]
+[connection signal="key_selected" from="Keyboard" to="." method="_on_keyboard_key_selected"]

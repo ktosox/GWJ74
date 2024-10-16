@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dobkkp1k1heyr"]
+
+[ext_resource type="Script" path="res://experimental/box.gd" id="1_csh2e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_606vk"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y8qai"]
+resource_local_to_scene = true
+albedo_color = Color(0.404889, 0.445495, 0.0797216, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m46yt"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_y8qai")
+size = Vector3(2, 2, 2)
+
+[node name="Box" type="Area3D"]
+collision_layer = 0
+collision_mask = 10
+monitorable = false
+script = ExtResource("1_csh2e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_606vk")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_m46yt")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

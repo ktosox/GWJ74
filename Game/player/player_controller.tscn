@@ -1,0 +1,119 @@
+[gd_scene load_steps=15 format=3 uid="uid://cmfs7ntje0ay6"]
+
+[ext_resource type="Script" path="res://player/player_controller.gd" id="1_ugusn"]
+[ext_resource type="Material" uid="uid://1jtvmxwejayf" path="res://player/player_material2.tres" id="2_j64ux"]
+[ext_resource type="Material" uid="uid://bgmbhaunbbvyk" path="res://player/player_material1.tres" id="3_qr2g8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_565wh"]
+albedo_color = Color(0.273873, 0.273873, 0.273873, 1)
+emission_enabled = true
+emission = Color(0.589236, 0.54, 0.198557, 1)
+emission_energy_multiplier = 4.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_eox3j"]
+material = SubResource("StandardMaterial3D_565wh")
+radius = 0.15
+radial_segments = 8
+rings = 4
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w8qya"]
+size = Vector3(1.125, 0.6, 1.7)
+
+[sub_resource type="Animation" id="Animation_xyvld"]
+resource_name = "get_hit"
+
+[sub_resource type="Animation" id="Animation_v2ban"]
+resource_name = "get_killed"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s1pyg"]
+_data = {
+"get_hit": SubResource("Animation_xyvld"),
+"get_killed": SubResource("Animation_v2ban")
+}
+
+[sub_resource type="BoxMesh" id="BoxMesh_r8jxg"]
+material = ExtResource("3_qr2g8")
+size = Vector3(0.5, 0.3, 0.7)
+
+[sub_resource type="PrismMesh" id="PrismMesh_5py8n"]
+material = ExtResource("3_qr2g8")
+size = Vector3(0.25, 0.55, 0.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_kqwh8"]
+material = ExtResource("3_qr2g8")
+top_radius = 0.2
+bottom_radius = 0.2
+height = 1.0
+radial_segments = 8
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_v167e"]
+material = ExtResource("2_j64ux")
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.4
+radial_segments = 6
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_r47w3"]
+material = ExtResource("3_qr2g8")
+height = 0.3
+radial_segments = 8
+
+[node name="PlayerController" type="CharacterBody3D" groups=["player"]]
+collision_layer = 2
+collision_mask = 4
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+motion_mode = 1
+script = ExtResource("1_ugusn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.117901, -0.993025, 0, 0.993025, 0.117901, 0, 0.300299, -0.396725)
+mesh = SubResource("SphereMesh_eox3j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0208613, -0.228143)
+shape = SubResource("BoxShape3D_w8qya")
+
+[node name="DamageAnimator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_s1pyg")
+}
+
+[node name="Center" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.194219, -0.163187)
+mesh = SubResource("BoxMesh_r8jxg")
+
+[node name="Front" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, 1, -4.37114e-08, 3.82137e-15, -4.37114e-08, -1, 4.37114e-08, 0, 0.221988, -0.78)
+mesh = SubResource("PrismMesh_5py8n")
+
+[node name="TubeRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.5, -0.105618, 0.2)
+mesh = SubResource("CylinderMesh_kqwh8")
+
+[node name="Exhaust" type="MeshInstance3D" parent="TubeRight"]
+transform = Transform3D(1, 0, 0, 0, 0.999173, 0.040655, 0, -0.040655, 0.999173, 0, 0.4, 0)
+mesh = SubResource("CylinderMesh_v167e")
+skeleton = NodePath("../..")
+
+[node name="TubeLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.5, -0.105618, 0.2)
+mesh = SubResource("CylinderMesh_kqwh8")
+
+[node name="Exhaust" type="MeshInstance3D" parent="TubeLeft"]
+transform = Transform3D(1, 0, 0, 0, 0.999173, 0.040655, 0, -0.040655, 0.999173, 0, 0.4, 0)
+mesh = SubResource("CylinderMesh_v167e")
+skeleton = NodePath("../..")
+
+[node name="GunCooldown" type="Timer" parent="."]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.312958)
+mesh = SubResource("CylinderMesh_r47w3")
+
+[node name="GunOutput" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.149502, -0.0788883)
+
+[connection signal="timeout" from="GunCooldown" to="." method="_on_gun_cooldown_timeout"]
