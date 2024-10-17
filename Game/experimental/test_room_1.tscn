@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cqxedbhhrmr4s"]
+[gd_scene load_steps=15 format=3 uid="uid://cqxedbhhrmr4s"]
 
 [ext_resource type="PackedScene" uid="uid://cmfs7ntje0ay6" path="res://player/player_controller.tscn" id="1_10j6n"]
 [ext_resource type="Script" path="res://experimental/test_room_1.gd" id="1_acl2q"]
@@ -48,6 +48,14 @@ _data = {
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ev5k"]
+render_priority = 1
+depth_draw_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_y3xvx"]
+material = SubResource("StandardMaterial3D_5ev5k")
+size = Vector2(8, 80)
 
 [node name="TestRoom1" type="Node3D"]
 script = ExtResource("1_acl2q")
@@ -210,5 +218,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.91, 0, 1.425)
 
 [node name="Box" parent="." instance=ExtResource("4_fe00h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32479, 1.31972, -20.3364)
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.92263, -37.3039)
+mesh = SubResource("PlaneMesh_y3xvx")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
