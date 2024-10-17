@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://cqxedbhhrmr4s"]
+[gd_scene load_steps=16 format=3 uid="uid://cqxedbhhrmr4s"]
 
 [ext_resource type="PackedScene" uid="uid://cmfs7ntje0ay6" path="res://player/player_controller.tscn" id="1_10j6n"]
 [ext_resource type="Script" path="res://experimental/test_room_1.gd" id="1_acl2q"]
 [ext_resource type="PackedScene" uid="uid://cbyg1rbre0yrd" path="res://experimental/wall_of_death.tscn" id="3_3wmx7"]
-[ext_resource type="PackedScene" uid="uid://dobkkp1k1heyr" path="res://experimental/box.tscn" id="4_fe00h"]
 
 [sub_resource type="Environment" id="Environment_odgyf"]
 background_mode = 1
@@ -44,7 +43,7 @@ cap_bottom = false
 
 [sub_resource type="Curve3D" id="Curve3D_x1t1j"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 55),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -52,10 +51,41 @@ point_count = 2
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ev5k"]
 render_priority = 1
 depth_draw_mode = 2
+albedo_color = Color(0.568842, 8.18223e-07, 0.286531, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_y3xvx"]
 material = SubResource("StandardMaterial3D_5ev5k")
-size = Vector2(8, 80)
+size = Vector2(10, 80)
+
+[sub_resource type="Animation" id="Animation_qhk2p"]
+resource_name = "new_animation"
+length = 9.0
+loop_mode = 1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5, 4.6, 6.96667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"spawn_box"
+}, {
+"args": [],
+"method": &"spawn_fuel"
+}, {
+"args": [],
+"method": &"spawn_box"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0hagh"]
+_data = {
+"new_animation": SubResource("Animation_qhk2p")
+}
 
 [node name="TestRoom1" type="Node3D"]
 script = ExtResource("1_acl2q")
@@ -159,54 +189,30 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, -4,
 mesh = SubResource("CylinderMesh_8yqai")
 
 [node name="Spawner" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
-
-[node name="Path3D" type="Path3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-curve = SubResource("Curve3D_x1t1j")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
 
 [node name="Path3D2" type="Path3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 1, 0)
 curve = SubResource("Curve3D_x1t1j")
 
 [node name="Path3D3" type="Path3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 1, 0)
 curve = SubResource("Curve3D_x1t1j")
 
-[node name="Path3D4" type="Path3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+[node name="TopM" type="Path3D" parent="Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 curve = SubResource("Curve3D_x1t1j")
 
-[node name="Path3D5" type="Path3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 3, 0)
-curve = SubResource("Curve3D_x1t1j")
-
-[node name="Path3D6" type="Path3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 3, 0)
-curve = SubResource("Curve3D_x1t1j")
-
-[node name="Path3D7" type="Path3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
-curve = SubResource("Curve3D_x1t1j")
-
-[node name="Path3D8" type="Path3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -3, 0)
-curve = SubResource("Curve3D_x1t1j")
-
-[node name="Path3D9" type="Path3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -3, 0)
-curve = SubResource("Curve3D_x1t1j")
-
-[node name="Path3D10" type="Path3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+[node name="BotM" type="Path3D" parent="Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 curve = SubResource("Curve3D_x1t1j")
 
 [node name="Path3D11" type="Path3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, -1, 0)
 curve = SubResource("Curve3D_x1t1j")
 
 [node name="Path3D12" type="Path3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, -1, 0)
 curve = SubResource("Curve3D_x1t1j")
 
 [node name="Timer" type="Timer" parent="."]
@@ -216,11 +222,14 @@ autostart = true
 [node name="WallOfDeath" parent="." instance=ExtResource("3_3wmx7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.91, 0, 1.425)
 
-[node name="Box" parent="." instance=ExtResource("4_fe00h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32479, 1.31972, -20.3364)
-
 [node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.92263, -37.3039)
 mesh = SubResource("PlaneMesh_y3xvx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0hagh")
+}
+autoplay = "new_animation"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

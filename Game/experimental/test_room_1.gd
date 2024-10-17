@@ -1,9 +1,12 @@
 extends Node3D
 
+var fuel_scene = preload("res://experimental/fuel.tscn")
+
+var box_scene = preload("res://experimental/box.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-
+	GM.reset_player_values()
 	
 	pass # Replace with function body.
 
@@ -12,6 +15,17 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func spawn_box():
+	var new_box = box_scene.instantiate()
+	var random_lane = $Spawner.get_children()[randi()%$Spawner.get_child_count()]
+	random_lane.add_child(new_box)
+	pass
+
+func spawn_fuel():
+	var new_fuel = fuel_scene.instantiate()
+	var random_lane = $Spawner.get_children()[randi()%$Spawner.get_child_count()]
+	random_lane.add_child(new_fuel)
+	pass
 
 func _on_timer_timeout() -> void:
 	var ring_scene = preload("res://experimental/cool_pass_ring.tscn")

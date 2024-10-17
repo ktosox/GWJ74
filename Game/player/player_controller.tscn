@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cmfs7ntje0ay6"]
+[gd_scene load_steps=20 format=3 uid="uid://cmfs7ntje0ay6"]
 
 [ext_resource type="Script" path="res://player/player_controller.gd" id="1_ugusn"]
 [ext_resource type="Material" uid="uid://1jtvmxwejayf" path="res://player/player_material2.tres" id="2_j64ux"]
@@ -7,8 +7,8 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_565wh"]
 albedo_color = Color(0.273873, 0.273873, 0.273873, 1)
 emission_enabled = true
-emission = Color(0.589236, 0.54, 0.198557, 1)
-emission_energy_multiplier = 4.0
+emission = Color(0.795262, 0.734058, 0.313715, 1)
+emission_energy_multiplier = 5.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_eox3j"]
 material = SubResource("StandardMaterial3D_565wh")
@@ -16,17 +16,70 @@ radius = 0.15
 radial_segments = 8
 rings = 4
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_w8qya"]
-size = Vector3(1.125, 0.6, 1.7)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4lo5v"]
+radius = 0.6
+height = 2.2
 
 [sub_resource type="Animation" id="Animation_xyvld"]
 resource_name = "get_hit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shields:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:can_be_hit")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_v2ban"]
 resource_name = "get_killed"
 
+[sub_resource type="Animation" id="Animation_m3pxj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shields:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:can_be_hit")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s1pyg"]
 _data = {
+"RESET": SubResource("Animation_m3pxj"),
 "get_hit": SubResource("Animation_xyvld"),
 "get_killed": SubResource("Animation_v2ban")
 }
@@ -58,7 +111,34 @@ material = ExtResource("3_qr2g8")
 height = 0.3
 radial_segments = 8
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0pnmf"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+albedo_color = Color(0.403922, 1, 1, 0.0627451)
+emission_enabled = true
+emission = Color(7.31587e-06, 0.889366, 0.891586, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1cfl1"]
+material = SubResource("StandardMaterial3D_0pnmf")
+radius = 0.75
+height = 2.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_14p2s"]
+emission_enabled = true
+emission = Color(0, 0.780392, 0, 1)
+emission_energy_multiplier = 4.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2cy55"]
+material = SubResource("StandardMaterial3D_14p2s")
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.2
+radial_segments = 8
+
 [node name="PlayerController" type="CharacterBody3D" groups=["player"]]
+process_mode = 3
 collision_layer = 2
 collision_mask = 4
 axis_lock_linear_z = true
@@ -68,13 +148,13 @@ axis_lock_angular_z = true
 motion_mode = 1
 script = ExtResource("1_ugusn")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.117901, -0.993025, 0, 0.993025, 0.117901, 0, 0.300299, -0.396725)
+[node name="GunOrb" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.117901, -0.993025, 0, 0.993025, 0.117901, 0, 0.362211, -0.396725)
 mesh = SubResource("SphereMesh_eox3j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0208613, -0.228143)
-shape = SubResource("BoxShape3D_w8qya")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_4lo5v")
 
 [node name="DamageAnimator" type="AnimationPlayer" parent="."]
 libraries = {
@@ -82,11 +162,11 @@ libraries = {
 }
 
 [node name="Center" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.194219, -0.163187)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.256131, -0.163187)
 mesh = SubResource("BoxMesh_r8jxg")
 
 [node name="Front" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.91069e-15, -4.37114e-08, -1, 1, -4.37114e-08, 3.82137e-15, -4.37114e-08, -1, 4.37114e-08, 0, 0.221988, -0.78)
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, 1, -4.37114e-08, 3.82137e-15, -4.37114e-08, -1, 4.37114e-08, 0, 0.2839, -0.78)
 mesh = SubResource("PrismMesh_5py8n")
 
 [node name="TubeRight" type="MeshInstance3D" parent="."]
@@ -116,4 +196,18 @@ mesh = SubResource("CylinderMesh_r47w3")
 [node name="GunOutput" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.149502, -0.0788883)
 
+[node name="Shields" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.00186746, 0.999998, 0, -0.999998, -0.00186746, 0, 0, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_1cfl1")
+
+[node name="ZA_WARUDO_Cooldown" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[node name="TimeOrb" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.451403)
+mesh = SubResource("CylinderMesh_2cy55")
+
 [connection signal="timeout" from="GunCooldown" to="." method="_on_gun_cooldown_timeout"]
+[connection signal="timeout" from="ZA_WARUDO_Cooldown" to="." method="_on_za_warudo_cooldown_timeout"]

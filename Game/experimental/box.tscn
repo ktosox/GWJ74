@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dobkkp1k1heyr"]
+[gd_scene load_steps=8 format=3 uid="uid://dobkkp1k1heyr"]
 
 [ext_resource type="Script" path="res://experimental/box.gd" id="1_csh2e"]
 
@@ -14,16 +14,103 @@ resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_y8qai")
 size = Vector3(2, 2, 2)
 
-[node name="Box" type="Area3D"]
+[sub_resource type="Animation" id="Animation_ysbfg"]
+resource_name = "new_animation"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Detector/Body:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(0.2, 0.2, 0.2), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yjqgk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Detector/Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.2, 0.2, 0.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iytmn"]
+_data = {
+"RESET": SubResource("Animation_yjqgk"),
+"new_animation": SubResource("Animation_ysbfg")
+}
+
+[node name="Box" type="PathFollow3D"]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+script = ExtResource("1_csh2e")
+
+[node name="Detector" type="Area3D" parent="."]
 collision_layer = 0
 collision_mask = 10
 monitorable = false
-script = ExtResource("1_csh2e")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Detector"]
 shape = SubResource("BoxShape3D_606vk")
 
-[node name="Body" type="MeshInstance3D" parent="."]
+[node name="Body" type="MeshInstance3D" parent="Detector"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_m46yt")
+skeleton = NodePath("../..")
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_iytmn")
+}
+autoplay = "new_animation"
+
+[connection signal="area_entered" from="Detector" to="." method="_on_detector_area_entered"]
+[connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]
