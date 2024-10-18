@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://cqxedbhhrmr4s"]
+[gd_scene load_steps=18 format=3 uid="uid://cqxedbhhrmr4s"]
 
 [ext_resource type="PackedScene" uid="uid://cmfs7ntje0ay6" path="res://player/player_controller.tscn" id="1_10j6n"]
 [ext_resource type="Script" path="res://experimental/test_room_1.gd" id="1_acl2q"]
 [ext_resource type="PackedScene" uid="uid://cbyg1rbre0yrd" path="res://experimental/wall_of_death.tscn" id="3_3wmx7"]
+[ext_resource type="Shader" path="res://experimental/screen_shader.gdshader" id="4_cbxow"]
 
 [sub_resource type="Environment" id="Environment_odgyf"]
 background_mode = 1
@@ -86,6 +87,11 @@ tracks/0/keys = {
 _data = {
 "new_animation": SubResource("Animation_qhk2p")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l35na"]
+shader = ExtResource("4_cbxow")
+shader_parameter/scanline_count = 200.0
+shader_parameter/color_offset = null
 
 [node name="TestRoom1" type="Node3D"]
 script = ExtResource("1_acl2q")
@@ -231,5 +237,15 @@ libraries = {
 "": SubResource("AnimationLibrary_0hagh")
 }
 autoplay = "new_animation"
+
+[node name="Overlay" type="CanvasLayer" parent="."]
+
+[node name="ScreenEffect" type="ColorRect" parent="Overlay"]
+material = SubResource("ShaderMaterial_l35na")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
