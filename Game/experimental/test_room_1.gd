@@ -4,6 +4,7 @@ var fuel_scene = preload("res://experimental/fuel.tscn")
 
 var box_scene = preload("res://experimental/box.tscn")
 
+var left_or_right = ["left","right","left","right"]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GM.reset_player_values()
@@ -11,9 +12,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+
 
 func spawn_box():
 	var new_box = box_scene.instantiate()
@@ -29,12 +28,11 @@ func spawn_fuel():
 
 func _on_timer_timeout() -> void:
 	var ring_scene = preload("res://experimental/cool_pass_ring.tscn")
-	for R in 4 :
-		var new_ring = ring_scene.instantiate()
-		var left_or_right = ["left","right"]
-		new_ring.get_node("Spinner").play(left_or_right[randi()%2])
-		add_child(new_ring)
-		await get_tree().create_timer(2.5).timeout
+	var new_ring = ring_scene.instantiate()
+	new_ring.get_node("Spinner").play(left_or_right.pop_front())
+	add_child(new_ring)
+	if left_or_right.size() < 1:
+		$Timer.stop()
 	#var new_collider = load("res://experimental/test_collider.tscn").instantiate()
 	#
 	#$Spawner.get_children()[randi()%$Spawner.get_child_count()].add_child(new_collider)

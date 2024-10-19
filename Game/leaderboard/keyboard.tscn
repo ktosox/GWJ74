@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b1sqmxngckw8a"]
+[gd_scene load_steps=10 format=3 uid="uid://b1sqmxngckw8a"]
 
 [ext_resource type="Script" path="res://leaderboard/keyboard.gd" id="1_sdln5"]
 [ext_resource type="PackedScene" uid="uid://bjymjbuv5bb6e" path="res://leaderboard/character.tscn" id="2_22lgf"]
+[ext_resource type="Theme" uid="uid://7mmlar7dbofy" path="res://resources/fonts/welcome_font.tres" id="3_ewvlu"]
 [ext_resource type="Theme" uid="uid://em0x4hcgcgxj" path="res://resources/fonts/basic_font.tres" id="3_vo3tf"]
 
 [sub_resource type="Animation" id="Animation_4om2w"]
@@ -196,11 +197,12 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 186.0
-offset_top = 6.0
-offset_right = 276.0
-offset_bottom = 29.0
-text = "Enter name"
+offset_left = 123.0
+offset_top = 9.0
+offset_right = 363.0
+offset_bottom = 33.0
+theme = ExtResource("3_ewvlu")
+text = "ENTER NAME"
 
 [node name="Selector" type="Node2D" parent="."]
 position = Vector2(30, 47)

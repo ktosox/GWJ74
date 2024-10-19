@@ -8,9 +8,15 @@ func add_path_indicator() -> void:
 	new_indicator.progress_ratio = 0.95
 	pass
 
+func reset_fuel() -> void:
+	$AnimationPlayer.play("go_forward")
+	pass
+
+
 
 func _on_detector_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		GM.report_fuel_collected()
-		queue_free()
+		$AnimationPlayer.play("get_collected")
+
 	pass # Replace with function body.

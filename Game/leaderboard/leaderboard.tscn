@@ -7,9 +7,9 @@
 [node name="Leaderboard" type="CanvasLayer"]
 script = ExtResource("1_qsv21")
 
-[node name="Keyboard" parent="." instance=ExtResource("1_mfhsa")]
-
 [node name="HighScores" parent="." instance=ExtResource("2_uxsp0")]
 offset_left = 16.0
 offset_top = 109.0
 offset_bottom = 346.0
+
+[node name="Keyboard" parent="." instance=ExtResource("1_mfhsa")]

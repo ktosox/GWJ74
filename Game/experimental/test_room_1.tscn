@@ -1,9 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://cqxedbhhrmr4s"]
+[gd_scene load_steps=23 format=3 uid="uid://cqxedbhhrmr4s"]
 
 [ext_resource type="PackedScene" uid="uid://cmfs7ntje0ay6" path="res://player/player_controller.tscn" id="1_10j6n"]
 [ext_resource type="Script" path="res://experimental/test_room_1.gd" id="1_acl2q"]
 [ext_resource type="PackedScene" uid="uid://cbyg1rbre0yrd" path="res://experimental/wall_of_death.tscn" id="3_3wmx7"]
 [ext_resource type="Shader" path="res://experimental/screen_shader.gdshader" id="4_cbxow"]
+[ext_resource type="Script" path="res://experimental/overlay.gd" id="4_gysla"]
+[ext_resource type="Theme" uid="uid://em0x4hcgcgxj" path="res://resources/fonts/basic_font.tres" id="4_q4k85"]
 
 [sub_resource type="Environment" id="Environment_odgyf"]
 background_mode = 1
@@ -49,10 +51,71 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="Animation" id="Animation_5c1yh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_oaxg1"]
+resource_name = "new_animation"
+length = 14.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 7, 12),
+"transitions": PackedFloat32Array(1, 0, 1, 0),
+"update": 0,
+"values": [0.0, 1.0, 0.0, 1.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WallOfDeath/WallAnimator")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5, 7, 12),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [&"left", -1, 1.0, false],
+"method": &"play"
+}, {
+"args": [&"RESET", -1, 1.0, false],
+"method": &"play"
+}, {
+"args": [&"right", -1, 1.0, false],
+"method": &"play"
+}, {
+"args": [&"RESET", -1, 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2crw4"]
+_data = {
+"RESET": SubResource("Animation_5c1yh"),
+"new_animation": SubResource("Animation_oaxg1")
+}
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ev5k"]
 render_priority = 1
 depth_draw_mode = 2
-albedo_color = Color(0.568842, 8.18223e-07, 0.286531, 1)
+albedo_color = Color(0.60029, 0.899106, 0.929981, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_y3xvx"]
 material = SubResource("StandardMaterial3D_5ev5k")
@@ -91,7 +154,7 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l35na"]
 shader = ExtResource("4_cbxow")
 shader_parameter/scanline_count = 200.0
-shader_parameter/color_offset = null
+shader_parameter/color_offset = Vector3(0, -1, 1)
 
 [node name="TestRoom1" type="Node3D"]
 script = ExtResource("1_acl2q")
@@ -100,6 +163,7 @@ script = ExtResource("1_acl2q")
 environment = SubResource("Environment_odgyf")
 
 [node name="PlayerController" parent="." instance=ExtResource("1_10j6n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.948113, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
@@ -194,39 +258,52 @@ mesh = SubResource("CylinderMesh_8yqai")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, -4, 0.5)
 mesh = SubResource("CylinderMesh_8yqai")
 
+[node name="CenterMiddle" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
+curve = SubResource("Curve3D_x1t1j")
+
+[node name="WallMover" type="PathFollow3D" parent="CenterMiddle"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="WallOfDeath" parent="CenterMiddle/WallMover" instance=ExtResource("3_3wmx7")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CenterMiddle/WallMover"]
+libraries = {
+"": SubResource("AnimationLibrary_2crw4")
+}
+autoplay = "new_animation"
+
 [node name="Spawner" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
 
-[node name="Path3D2" type="Path3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 1, 0)
+[node name="TopRight" type="Path3D" parent="Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
 curve = SubResource("Curve3D_x1t1j")
 
-[node name="Path3D3" type="Path3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 1, 0)
+[node name="TopLeft" type="Path3D" parent="Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
 curve = SubResource("Curve3D_x1t1j")
 
-[node name="TopM" type="Path3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+[node name="TopMiddle" type="Path3D" parent="Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 curve = SubResource("Curve3D_x1t1j")
 
-[node name="BotM" type="Path3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+[node name="BotMiddle" type="Path3D" parent="Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 curve = SubResource("Curve3D_x1t1j")
 
-[node name="Path3D11" type="Path3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, -1, 0)
+[node name="BotRight" type="Path3D" parent="Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1, 0)
 curve = SubResource("Curve3D_x1t1j")
 
-[node name="Path3D12" type="Path3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, -1, 0)
+[node name="BotLeft" type="Path3D" parent="Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, 0)
 curve = SubResource("Curve3D_x1t1j")
 
 [node name="Timer" type="Timer" parent="."]
-one_shot = true
+wait_time = 4.0
 autostart = true
-
-[node name="WallOfDeath" parent="." instance=ExtResource("3_3wmx7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.91, 0, 1.425)
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.92263, -37.3039)
@@ -239,6 +316,7 @@ libraries = {
 autoplay = "new_animation"
 
 [node name="Overlay" type="CanvasLayer" parent="."]
+script = ExtResource("4_gysla")
 
 [node name="ScreenEffect" type="ColorRect" parent="Overlay"]
 material = SubResource("ShaderMaterial_l35na")
@@ -248,4 +326,28 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="TopLayout" type="HBoxContainer" parent="Overlay"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 14.0
+offset_right = -27.0
+offset_bottom = 123.0
+grow_horizontal = 2
+
+[node name="Health" type="Label" parent="Overlay/TopLayout"]
+layout_mode = 2
+theme = ExtResource("4_q4k85")
+text = "HP: 3"
+
+[node name="Control" type="Control" parent="Overlay/TopLayout"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Score" type="Label" parent="Overlay/TopLayout"]
+layout_mode = 2
+theme = ExtResource("4_q4k85")
+text = "score: 0"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="CenterMiddle/WallMover/WallOfDeath"]

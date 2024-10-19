@@ -14,6 +14,7 @@ func get_hit() -> void:
 
 
 func _on_detector_area_entered(area: Area3D) -> void:
+	print("bullet hit")
 	if area.is_in_group("bullet"):
 		area.visible = false
 		get_hit()

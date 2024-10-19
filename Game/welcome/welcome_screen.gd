@@ -14,6 +14,7 @@ func _input(event: InputEvent) -> void:
 				success +=1
 		if success == 4:
 			print("start game")
+			GM.start_game()
 			return
 	for action in valid_actions :
 		if event.is_action_pressed(action):

@@ -13,9 +13,9 @@ var gun_ready = true
 
 var ZA_WARUDO_ready = true
 
-@onready var time_orb_material_power = $TimeOrb.mesh.material.emission_energy_multiplier
+@onready var time_orb_material = $TimeOrb.mesh.material as StandardMaterial3D
 
-@onready var gun_orb_material_power = $GunOrb.mesh.material.emission_energy_multiplier
+@onready var gun_orb_material = $GunOrb.mesh.material as StandardMaterial3D
 
 @export var can_be_hit = true
 
@@ -54,20 +54,22 @@ func _physics_process(delta: float) -> void:
 func stop_time() -> void: #ZA WARUDO!
 	print("stoping time")
 	ZA_WARUDO_ready = false
+	time_orb_material.emission_energy_multiplier = 100
 	get_tree().paused = true
 	$ZA_WARUDO_Cooldown.start()
 	await get_tree().create_timer(2).timeout
 	get_tree().paused = false
-	time_orb_material_power = 0
+	time_orb_material.emission_energy_multiplier = 0
 	pass
 
 func fire_gun() -> void:
 	gun_ready = false
+	$GunSound.play()
 	var new_bullet = bullet_scene.instantiate() as Node3D
 	new_bullet.global_position = $GunOutput.global_position
 	get_tree().current_scene.add_child(new_bullet)
 	print("pew")
-	gun_orb_material_power = 0
+	gun_orb_material.emission_energy_multiplier = 0
 	$GunCooldown.start()
 	pass
 
@@ -78,16 +80,22 @@ func get_hit() -> void:
 	can_be_hit = false
 	if GM.report_player_damage():
 		set_physics_process(false)
+		get_tree().paused = true
 		$DamageAnimator.play("get_killed")
+		$DeathSound.play()
 	else:
+		$DamageSound.play()
 		$DamageAnimator.play("get_hit")
 
 	pass
 
+func end_game() -> void:
+	GM.end_game()
+	pass
 
 func _on_gun_cooldown_timeout() -> void:
 	gun_ready = true
-	gun_orb_material_power = 5
+	gun_orb_material.emission_energy_multiplier = 5
 	if Input.is_action_pressed("button_A"):
 		fire_gun()
 	pass # Replace with function body.
@@ -95,5 +103,5 @@ func _on_gun_cooldown_timeout() -> void:
 
 func _on_za_warudo_cooldown_timeout() -> void:
 	ZA_WARUDO_ready = true
-	time_orb_material_power = 5
+	time_orb_material.emission_energy_multiplier = 5
 	pass # Replace with function body.
