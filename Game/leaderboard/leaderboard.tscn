@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://nmnnn7onxbg0"]
+[gd_scene load_steps=6 format=3 uid="uid://nmnnn7onxbg0"]
 
 [ext_resource type="PackedScene" uid="uid://b1sqmxngckw8a" path="res://leaderboard/keyboard.tscn" id="1_mfhsa"]
 [ext_resource type="Script" path="res://leaderboard/leaderboard.gd" id="1_qsv21"]
 [ext_resource type="PackedScene" uid="uid://dfp8hqfluengq" path="res://leaderboard/high_scores.tscn" id="2_uxsp0"]
+[ext_resource type="Shader" path="res://experimental/screen_shader.gdshader" id="4_dg86c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fjkrr"]
+shader = ExtResource("4_dg86c")
+shader_parameter/scanline_count = 200.0
+shader_parameter/color_offset = Vector3(0.75, 0, -0.68)
+shader_parameter/x_scale_rate = 1.1
 
 [node name="Leaderboard" type="CanvasLayer"]
 script = ExtResource("1_qsv21")
@@ -14,6 +21,14 @@ offset_right = 592.0
 offset_bottom = 346.0
 
 [node name="Keyboard" parent="." instance=ExtResource("1_mfhsa")]
+
+[node name="Shader" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_fjkrr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="key_removed" from="Keyboard" to="." method="_on_keyboard_key_removed"]
 [connection signal="key_selected" from="Keyboard" to="." method="_on_keyboard_key_selected"]

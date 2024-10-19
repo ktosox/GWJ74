@@ -55,12 +55,12 @@ text = "1."
 [node name="Score" type="Label" parent="."]
 layout_mode = 2
 theme = ExtResource("2_y6xgt")
-text = "99-"
+text = "09-"
 
 [node name="StoredName" type="Label" parent="."]
 layout_mode = 2
 theme = ExtResource("2_y6xgt")
-text = "ABCD"
+text = "ABCDE"
 
 [node name="BlinkyLine" type="Label" parent="."]
 visible = false

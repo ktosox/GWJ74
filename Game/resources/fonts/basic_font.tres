@@ -3,5 +3,5 @@
 [ext_resource type="FontFile" uid="uid://n4p1owuaodks" path="res://resources/fonts/classic_memesbruh03.ttf" id="1_ada3j"]
 
 [resource]
-Label/font_sizes/font_size = 58
+Label/font_sizes/font_size = 54
 Label/fonts/font = ExtResource("1_ada3j")

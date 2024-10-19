@@ -4,19 +4,20 @@
 [ext_resource type="Script" path="res://leaderboard/high_scores.gd" id="1_t6u1j"]
 
 [node name="HighScores" type="ColorRect"]
-offset_left = 18.0
-offset_top = 38.0
-offset_right = 569.0
-offset_bottom = 282.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 246.0
+grow_horizontal = 2
 color = Color(0.192964, 0.0298431, 0.0298609, 1)
 script = ExtResource("1_t6u1j")
 
 [node name="LayoutLeft" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(280, 0)
 layout_mode = 0
-offset_left = -11.0
-offset_top = 10.0
-offset_right = 242.0
-offset_bottom = 221.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 305.0
+offset_bottom = 181.0
 
 [node name="Score" parent="LayoutLeft" instance=ExtResource("1_mugo3")]
 layout_mode = 2
@@ -31,11 +32,12 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="LayoutRight" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(280, 0)
 layout_mode = 0
-offset_left = 309.0
-offset_top = 10.0
-offset_right = 562.0
-offset_bottom = 221.0
+offset_left = 305.0
+offset_top = 25.0
+offset_right = 585.0
+offset_bottom = 181.0
 
 [node name="Score5" parent="LayoutRight" instance=ExtResource("1_mugo3")]
 layout_mode = 2

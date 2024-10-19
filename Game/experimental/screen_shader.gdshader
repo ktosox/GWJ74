@@ -1,9 +1,11 @@
 //---CRT Shader---
 shader_type canvas_item;
 
-uniform float scanline_count : hint_range(0, 1800) = 50.0;
+uniform float scanline_count : hint_range(0, 1800) = 200.0;
 
 uniform vec3 color_offset ;
+
+uniform float x_scale_rate = 1.1;
 
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture,filter_linear_mipmap;
 
@@ -17,7 +19,7 @@ vec2 uv_curve(vec2 uv)
 	uv.y *= 1.0 + pow(abs(uv.x) / 3.0, 2.0);
 	
 	//The scale part (you can delete it when you want)
-	uv /= 1.2;
+	uv /= x_scale_rate;
 	
 	uv = (uv/2.0) + 0.5;
 	return uv;

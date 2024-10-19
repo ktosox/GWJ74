@@ -65,10 +65,10 @@ _data = {
 }
 
 [node name="Keyboard" type="ColorRect"]
-offset_left = 65.0
-offset_top = 399.0
-offset_right = 535.0
-offset_bottom = 774.0
+offset_left = 64.0
+offset_top = 386.0
+offset_right = 534.0
+offset_bottom = 761.0
 color = Color(0.172549, 0.470588, 0.470588, 1)
 script = ExtResource("1_sdln5")
 
