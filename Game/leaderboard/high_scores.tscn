@@ -13,9 +13,9 @@ script = ExtResource("1_t6u1j")
 
 [node name="LayoutLeft" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 6.0
+offset_left = -11.0
 offset_top = 10.0
-offset_right = 259.0
+offset_right = 242.0
 offset_bottom = 221.0
 
 [node name="Score" parent="LayoutLeft" instance=ExtResource("1_mugo3")]
@@ -32,9 +32,9 @@ layout_mode = 2
 
 [node name="LayoutRight" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 282.0
+offset_left = 309.0
 offset_top = 10.0
-offset_right = 535.0
+offset_right = 562.0
 offset_bottom = 221.0
 
 [node name="Score5" parent="LayoutRight" instance=ExtResource("1_mugo3")]

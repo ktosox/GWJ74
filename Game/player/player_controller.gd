@@ -13,9 +13,9 @@ var gun_ready = true
 
 var ZA_WARUDO_ready = true
 
-@onready var time_orb_material = $TimeOrb.mesh.material as StandardMaterial3D
+@onready var time_orb_material = $ShipBody/TimeOrb.mesh.material as StandardMaterial3D
 
-@onready var gun_orb_material = $GunOrb.mesh.material as StandardMaterial3D
+@onready var gun_orb_material = $ShipBody/GunOrb.mesh.material as StandardMaterial3D
 
 @export var can_be_hit = true
 

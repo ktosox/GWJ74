@@ -7,18 +7,6 @@
 [ext_resource type="AudioStream" uid="uid://vaohkrv07vv0" path="res://resources/sounds/explosions.ogg" id="5_spcdr"]
 [ext_resource type="AudioStream" uid="uid://ddcvioi3kbny" path="res://resources/sounds/wow.ogg" id="5_wi5cj"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_565wh"]
-albedo_color = Color(0.273873, 0.273873, 0.273873, 1)
-emission_enabled = true
-emission = Color(0.795262, 0.734058, 0.313715, 1)
-emission_energy_multiplier = 5.0
-
-[sub_resource type="SphereMesh" id="SphereMesh_eox3j"]
-material = SubResource("StandardMaterial3D_565wh")
-radius = 0.15
-radial_segments = 8
-rings = 4
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4lo5v"]
 radius = 0.6
 height = 2.2
@@ -64,7 +52,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("TubeLeft/CPUParticles3D2:emitting")
+tracks/3/path = NodePath("ShipBody/TubeLeft/CPUParticles3D2:emitting")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -76,10 +64,22 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("TubeRight/CPUParticles3D:emitting")
+tracks/4/path = NodePath("ShipBody/TubeRight/CPUParticles3D:emitting")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ShipBody:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -145,7 +145,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("TubeLeft/CPUParticles3D2:emitting")
+tracks/2/path = NodePath("ShipBody/TubeLeft/CPUParticles3D2:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -157,7 +157,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("TubeRight/CPUParticles3D:emitting")
+tracks/3/path = NodePath("ShipBody/TubeRight/CPUParticles3D:emitting")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -165,6 +165,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ShipBody:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.36667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s1pyg"]
@@ -174,13 +186,43 @@ _data = {
 "get_killed": SubResource("Animation_v2ban")
 }
 
-[sub_resource type="BoxMesh" id="BoxMesh_r8jxg"]
-material = ExtResource("3_qr2g8")
-size = Vector3(0.5, 0.3, 0.7)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0pnmf"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+albedo_color = Color(0.403922, 1, 1, 0.0627451)
+emission_enabled = true
+emission = Color(7.31587e-06, 0.889366, 0.891586, 1)
+emission_energy_multiplier = 3.0
 
-[sub_resource type="PrismMesh" id="PrismMesh_5py8n"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1cfl1"]
+material = SubResource("StandardMaterial3D_0pnmf")
+radius = 0.75
+height = 2.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_exe3h"]
+render_priority = 5
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.843137)
+
+[sub_resource type="SphereMesh" id="SphereMesh_rut2k"]
+material = SubResource("StandardMaterial3D_exe3h")
+
+[sub_resource type="Curve" id="Curve_gfk1f"]
+max_value = 2.0
+_data = [Vector2(0, 0.677243), 0.0, 0.0, 0, 0, Vector2(0.146067, 2), -1.16038, -1.16038, 0, 0, Vector2(0.508427, 1.97155), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.95368, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_2nlkq"]
+offsets = PackedFloat32Array(0.0365854, 0.304878, 0.60061, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.713726, 0.0745098, 1, 1, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_r47w3"]
 material = ExtResource("3_qr2g8")
-size = Vector3(0.25, 0.55, 0.5)
+height = 0.3
+radial_segments = 8
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_kqwh8"]
 material = ExtResource("3_qr2g8")
@@ -215,24 +257,13 @@ bottom_radius = 0.1
 height = 0.4
 radial_segments = 6
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_r47w3"]
+[sub_resource type="BoxMesh" id="BoxMesh_r8jxg"]
 material = ExtResource("3_qr2g8")
-height = 0.3
-radial_segments = 8
+size = Vector3(0.5, 0.3, 0.7)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0pnmf"]
-transparency = 3
-alpha_hash_scale = 1.0
-alpha_antialiasing_mode = 0
-albedo_color = Color(0.403922, 1, 1, 0.0627451)
-emission_enabled = true
-emission = Color(7.31587e-06, 0.889366, 0.891586, 1)
-emission_energy_multiplier = 3.0
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_1cfl1"]
-material = SubResource("StandardMaterial3D_0pnmf")
-radius = 0.75
-height = 2.4
+[sub_resource type="PrismMesh" id="PrismMesh_5py8n"]
+material = ExtResource("3_qr2g8")
+size = Vector3(0.25, 0.55, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_14p2s"]
 emission_enabled = true
@@ -246,24 +277,17 @@ bottom_radius = 0.2
 height = 0.2
 radial_segments = 8
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_exe3h"]
-render_priority = 5
-transparency = 1
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_color = Color(1, 1, 1, 0.623529)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_565wh"]
+albedo_color = Color(0.273873, 0.273873, 0.273873, 1)
+emission_enabled = true
+emission = Color(0.795262, 0.734058, 0.313715, 1)
+emission_energy_multiplier = 5.0
 
-[sub_resource type="SphereMesh" id="SphereMesh_rut2k"]
-material = SubResource("StandardMaterial3D_exe3h")
-
-[sub_resource type="Curve" id="Curve_gfk1f"]
-max_value = 2.0
-_data = [Vector2(0, 0.677243), 0.0, 0.0, 0, 0, Vector2(0.146067, 2), -1.16038, -1.16038, 0, 0, Vector2(0.508427, 1.97155), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.95368, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="Gradient" id="Gradient_2nlkq"]
-offsets = PackedFloat32Array(0.0365854, 0.304878, 0.60061, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 0.713726, 0.0745098, 1, 1, 0, 0, 1, 0, 0, 0, 0)
+[sub_resource type="SphereMesh" id="SphereMesh_eox3j"]
+material = SubResource("StandardMaterial3D_565wh")
+radius = 0.15
+radial_segments = 8
+rings = 4
 
 [node name="PlayerController" type="CharacterBody3D" groups=["player"]]
 process_mode = 3
@@ -276,10 +300,6 @@ axis_lock_angular_z = true
 motion_mode = 1
 script = ExtResource("1_ugusn")
 
-[node name="GunOrb" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.117901, -0.993025, 0, 0.993025, 0.117901, 0, 0.362211, -0.396725)
-mesh = SubResource("SphereMesh_eox3j")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_4lo5v")
@@ -289,69 +309,7 @@ libraries = {
 "": SubResource("AnimationLibrary_s1pyg")
 }
 
-[node name="Center" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.256131, -0.163187)
-mesh = SubResource("BoxMesh_r8jxg")
-
-[node name="Front" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.91069e-15, -4.37114e-08, -1, 1, -4.37114e-08, 3.82137e-15, -4.37114e-08, -1, 4.37114e-08, 0, 0.2839, -0.78)
-mesh = SubResource("PrismMesh_5py8n")
-
-[node name="TubeRight" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.5, -0.105618, 0.2)
-mesh = SubResource("CylinderMesh_kqwh8")
-
-[node name="CPUParticles3D" type="CPUParticles3D" parent="TubeRight"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.628, 0)
-amount = 3
-lifetime = 0.2
-mesh = SubResource("SphereMesh_ptuim")
-emission_shape = 1
-emission_sphere_radius = 0.2
-particle_flag_align_y = true
-gravity = Vector3(0, 0, 8)
-damping_min = 0.045
-damping_max = 0.7
-scale_amount_curve = SubResource("Curve_i3gxc")
-color_ramp = SubResource("Gradient_bnfqi")
-hue_variation_min = -0.02
-hue_variation_max = 0.91
-
-[node name="Exhaust" type="MeshInstance3D" parent="TubeRight"]
-transform = Transform3D(1, 0, 0, 0, 0.999173, 0.040655, 0, -0.040655, 0.999173, 0, 0.4, 0)
-mesh = SubResource("CylinderMesh_v167e")
-skeleton = NodePath("../..")
-
-[node name="TubeLeft" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.5, -0.105618, 0.2)
-mesh = SubResource("CylinderMesh_kqwh8")
-
-[node name="CPUParticles3D2" type="CPUParticles3D" parent="TubeLeft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.628, 0)
-amount = 3
-lifetime = 0.2
-mesh = SubResource("SphereMesh_ptuim")
-emission_shape = 1
-emission_sphere_radius = 0.2
-particle_flag_align_y = true
-gravity = Vector3(0, 0, 8)
-damping_min = 0.045
-damping_max = 0.7
-scale_amount_curve = SubResource("Curve_i3gxc")
-color_ramp = SubResource("Gradient_bnfqi")
-hue_variation_min = -0.02
-hue_variation_max = 0.91
-
-[node name="Exhaust" type="MeshInstance3D" parent="TubeLeft"]
-transform = Transform3D(1, 0, 0, 0, 0.999173, 0.040655, 0, -0.040655, 0.999173, 0, 0.4, 0)
-mesh = SubResource("CylinderMesh_v167e")
-skeleton = NodePath("../..")
-
 [node name="GunCooldown" type="Timer" parent="."]
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.312958)
-mesh = SubResource("CylinderMesh_r47w3")
 
 [node name="GunOutput" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.149502, -0.0788883)
@@ -365,15 +323,11 @@ mesh = SubResource("CapsuleMesh_1cfl1")
 wait_time = 6.0
 one_shot = true
 
-[node name="TimeOrb" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.451403)
-mesh = SubResource("CylinderMesh_2cy55")
-
 [node name="Explosion" type="CPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.179341)
 emitting = false
-amount = 20
-lifetime = 3.0
+amount = 16
+lifetime = 2.4
 one_shot = true
 explosiveness = 0.38
 randomness = 0.5
@@ -404,6 +358,85 @@ bus = &"Game Sounds"
 [node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_spcdr")
 bus = &"Game Sounds"
+
+[node name="ShipBody" type="Node3D" parent="."]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="ShipBody"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.312958)
+mesh = SubResource("CylinderMesh_r47w3")
+skeleton = NodePath("../..")
+
+[node name="TubeLeft" type="MeshInstance3D" parent="ShipBody"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.5, -0.105618, 0.2)
+mesh = SubResource("CylinderMesh_kqwh8")
+skeleton = NodePath("../..")
+
+[node name="CPUParticles3D2" type="CPUParticles3D" parent="ShipBody/TubeLeft"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.628, 0)
+amount = 3
+lifetime = 0.2
+mesh = SubResource("SphereMesh_ptuim")
+emission_shape = 1
+emission_sphere_radius = 0.2
+particle_flag_align_y = true
+gravity = Vector3(0, 0, 8)
+damping_min = 0.045
+damping_max = 0.7
+scale_amount_curve = SubResource("Curve_i3gxc")
+color_ramp = SubResource("Gradient_bnfqi")
+hue_variation_min = -0.02
+hue_variation_max = 0.91
+
+[node name="Exhaust" type="MeshInstance3D" parent="ShipBody/TubeLeft"]
+transform = Transform3D(1, 0, 0, 0, 0.999173, 0.040655, 0, -0.040655, 0.999173, 0, 0.4, 0)
+mesh = SubResource("CylinderMesh_v167e")
+skeleton = NodePath("../../..")
+
+[node name="TubeRight" type="MeshInstance3D" parent="ShipBody"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.5, -0.105618, 0.2)
+mesh = SubResource("CylinderMesh_kqwh8")
+skeleton = NodePath("../..")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="ShipBody/TubeRight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.628, 0)
+amount = 3
+lifetime = 0.2
+mesh = SubResource("SphereMesh_ptuim")
+emission_shape = 1
+emission_sphere_radius = 0.2
+particle_flag_align_y = true
+gravity = Vector3(0, 0, 8)
+damping_min = 0.045
+damping_max = 0.7
+scale_amount_curve = SubResource("Curve_i3gxc")
+color_ramp = SubResource("Gradient_bnfqi")
+hue_variation_min = -0.02
+hue_variation_max = 0.91
+
+[node name="Exhaust" type="MeshInstance3D" parent="ShipBody/TubeRight"]
+transform = Transform3D(1, 0, 0, 0, 0.999173, 0.040655, 0, -0.040655, 0.999173, 0, 0.4, 0)
+mesh = SubResource("CylinderMesh_v167e")
+skeleton = NodePath("../../..")
+
+[node name="Center" type="MeshInstance3D" parent="ShipBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.256131, -0.163187)
+mesh = SubResource("BoxMesh_r8jxg")
+skeleton = NodePath("../..")
+
+[node name="Front" type="MeshInstance3D" parent="ShipBody"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, 1, -4.37114e-08, 3.82137e-15, -4.37114e-08, -1, 4.37114e-08, 0, 0.2839, -0.78)
+mesh = SubResource("PrismMesh_5py8n")
+skeleton = NodePath("../..")
+
+[node name="TimeOrb" type="MeshInstance3D" parent="ShipBody"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.451403)
+mesh = SubResource("CylinderMesh_2cy55")
+skeleton = NodePath("../..")
+
+[node name="GunOrb" type="MeshInstance3D" parent="ShipBody"]
+transform = Transform3D(1, 0, 0, 0, 0.117901, -0.993025, 0, 0.993025, 0.117901, 0, 0.362211, -0.396725)
+mesh = SubResource("SphereMesh_eox3j")
+skeleton = NodePath("../..")
 
 [connection signal="timeout" from="GunCooldown" to="." method="_on_gun_cooldown_timeout"]
 [connection signal="timeout" from="ZA_WARUDO_Cooldown" to="." method="_on_za_warudo_cooldown_timeout"]

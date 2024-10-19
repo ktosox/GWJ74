@@ -5,20 +5,7 @@ var score_scene = preload("res://leaderboard/score.tscn")
 var last_score
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
 
-	var new_score = insert_new_score(1)
-	new_score.set_label("HELLO")
-	new_score.set_score(50)
-	new_score = insert_new_score(1)
-	new_score.set_label("DERP")
-	new_score.set_score(10)
-	new_score = insert_new_score(8)
-	new_score.set_label("LOSE")
-	new_score.set_score(1)
-	new_score = insert_new_score(7)
-	new_score.set_label("WIN")
-	new_score.set_score(10)
 
 #func update_order() -> void: # hahhaHAHahAHAHahhAHAHAha
 	#var counter = 0.0
@@ -43,26 +30,30 @@ func update_order(): # oK
 
 
 
-func insert_new_score(index : int) -> Node:
-	var new_score = score_scene.instantiate()
+func insert_score(score: Control, index : int) -> void:
 	if index < 5:
-		$LayoutLeft.add_child(new_score)
-		$LayoutLeft.move_child(new_score,index-1)
+		$LayoutLeft.add_child(score)
+		$LayoutLeft.move_child(score,index-1)
 		var score_to_reparent = $LayoutLeft.get_child(4)
 		score_to_reparent.reparent($LayoutRight)
 		$LayoutRight.move_child(score_to_reparent,0)
 	else:
-		$LayoutRight.add_child(new_score)
-		$LayoutRight.move_child(new_score,index-5)
+		$LayoutRight.add_child(score)
+		$LayoutRight.move_child(score,index-5)
 	$LayoutRight.get_child(4).queue_free()
 	update_order()
+
+	pass
+
+func create_empty_score(points : int) -> Node:
+	var new_score = score_scene.instantiate()
+	new_score.score = points
+	new_score.cool_name = ""
+	insert_score(new_score,1)
+	last_score = new_score
 	return new_score
 	pass
 
-func create_score(points : int) -> void:
-	
-	pass
-
 func pass_key_to_last_score(key : String) -> void:
-	
+	last_score.add_letter(key)
 	pass
