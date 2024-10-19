@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cqxedbhhrmr4s"]
+[gd_scene load_steps=31 format=3 uid="uid://cqxedbhhrmr4s"]
 
 [ext_resource type="PackedScene" uid="uid://cmfs7ntje0ay6" path="res://player/player_controller.tscn" id="1_10j6n"]
 [ext_resource type="Script" path="res://experimental/test_room_1.gd" id="1_acl2q"]
@@ -128,54 +128,6 @@ texture_filter = 0
 material = SubResource("StandardMaterial3D_5ev5k")
 size = Vector2(10, 80)
 
-[sub_resource type="Animation" id="Animation_av6cv"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_qhk2p"]
-resource_name = "new_animation"
-length = 12.0
-loop_mode = 1
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(1.5, 4.6, 8.53333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"values": [{
-"args": [],
-"method": &"spawn_box"
-}, {
-"args": [],
-"method": &"spawn_fuel"
-}, {
-"args": [],
-"method": &"spawn_box"
-}]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("SpookyStuff")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(11.5333),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"black_out", -1, 1.0, false],
-"method": &"play"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_0hagh"]
-_data = {
-"RESET": SubResource("Animation_av6cv"),
-"new_animation": SubResource("Animation_qhk2p")
-}
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l35na"]
 shader = ExtResource("4_cbxow")
 shader_parameter/scanline_count = 200.0
@@ -220,6 +172,33 @@ _data = {
 "new_animation": SubResource("Animation_5d342")
 }
 
+[sub_resource type="Animation" id="Animation_2rg8a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Overlay/BlackOut:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Overlay/BlackOut/Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_v6bvn"]
 resource_name = "black_out"
 length = 1.8
@@ -246,33 +225,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
-}
-
-[sub_resource type="Animation" id="Animation_2rg8a"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Overlay/BlackOut:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Overlay/BlackOut/Label:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6qblr"]
@@ -434,12 +386,6 @@ autostart = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.92263, -37.3039)
 mesh = SubResource("PlaneMesh_y3xvx")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_0hagh")
-}
-autoplay = "new_animation"
-
 [node name="Overlay" type="CanvasLayer" parent="."]
 script = ExtResource("4_gysla")
 
@@ -480,9 +426,9 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = 124.0
+offset_left = 136.0
 offset_top = 320.0
-offset_right = 2.0
+offset_right = 14.0
 offset_bottom = 343.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -584,6 +530,22 @@ theme_override_font_sizes/font_size = 128
 text = "GET
 OUT"
 
+[node name="OutOfFuel" type="Label" parent="Overlay"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.0
+offset_top = -12.0
+offset_right = 132.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_5a1m6")
+text = "OUT OF FUEL"
+
 [node name="ScreenEffect" type="ColorRect" parent="Overlay"]
 material = SubResource("ShaderMaterial_l35na")
 anchors_preset = 15
@@ -591,6 +553,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="StartSetFuel" type="Timer" parent="Overlay"]
+wait_time = 0.5
+one_shot = true
+autostart = true
 
 [node name="Music" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("7_guidh")
@@ -609,5 +576,6 @@ libraries = {
 }
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Overlay/StartSetFuel" to="Overlay" method="_on_start_set_fuel_timeout"]
 
 [editable path="CenterMiddle/WallMover/WallOfDeath"]

@@ -55,3 +55,8 @@ func start_game():
 	await get_tree().create_timer(0.8).timeout
 	get_tree().change_scene_to_file("res://experimental/test_room_1.tscn")
 	pass
+
+func welcome_screen():
+	get_tree().change_scene_to_file("res://welcome/welcome_screen.tscn")
+	get_tree().paused = false
+	pass

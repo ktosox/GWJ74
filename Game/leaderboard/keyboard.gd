@@ -6,6 +6,8 @@ signal key_removed
 
 @onready var selected_character = $GridContainer/Character
 
+@export var block_input = false
+
 const character_offset = Vector2(46,76)
 
 var position_to_character_map = {}
@@ -23,6 +25,8 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if block_input:
+		return
 	if event.is_action_pressed("button_A"):
 		emit_signal("key_selected",selected_character.get_character())
 		print(selected_character.get_character())

@@ -72,3 +72,9 @@ text = "_"
 libraries = {
 "": SubResource("AnimationLibrary_gxr3w")
 }
+
+[node name="NameCompleteTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="NameCompleteTimer" to="." method="_on_name_complete_timer_timeout"]

@@ -28,7 +28,7 @@ func set_score(score : int) -> void:
 	pass
 
 func add_letter(letter : String) -> void:
-
+	$NameCompleteTimer.stop()
 		
 	if letter == "delete" and $StoredName.text.length() > 0:
 		set_label($StoredName.text.erase($StoredName.text.length()-1))
@@ -38,9 +38,15 @@ func add_letter(letter : String) -> void:
 		set_label($StoredName.text + letter)
 	if $StoredName.text.length() > 4:
 		$BlinkyLine/Blinker.play("RESET")
+		$NameCompleteTimer.start()
 	else:
 		$BlinkyLine/Blinker.play("blink")
 		
 
 func set_label(text : String) -> void:
 	$StoredName.text = text
+
+
+func _on_name_complete_timer_timeout() -> void:
+	GM.welcome_screen()
+	pass # Replace with function body.

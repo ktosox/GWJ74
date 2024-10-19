@@ -1,5 +1,7 @@
 extends ColorRect
 
+signal name_complete
+
 var score_scene = preload("res://leaderboard/score.tscn")
 
 var last_score
