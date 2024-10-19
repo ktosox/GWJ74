@@ -9,7 +9,8 @@
 shader = ExtResource("4_dg86c")
 shader_parameter/scanline_count = 200.0
 shader_parameter/color_offset = Vector3(0.75, 0, -0.68)
-shader_parameter/x_scale_rate = 1.1
+shader_parameter/x_scale_rate = 0.6
+shader_parameter/zoom_in = 1.12
 
 [node name="Leaderboard" type="CanvasLayer"]
 script = ExtResource("1_qsv21")

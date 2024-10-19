@@ -21,7 +21,10 @@ func set_index_number(number : int) -> void:
 	$Number.text = str(number) + '.'
 
 func set_score(score : int) -> void:
-	$Score.text = str(score) +'-'
+	var text_score = str(score)
+	if score < 10:
+		text_score = "0" + str(score)
+	$Score.text = text_score +'-'
 	pass
 
 func add_letter(letter : String) -> void:

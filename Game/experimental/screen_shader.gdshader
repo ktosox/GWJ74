@@ -7,12 +7,14 @@ uniform vec3 color_offset ;
 
 uniform float x_scale_rate = 1.1;
 
+uniform float zoom_in = 2.0;
+
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture,filter_linear_mipmap;
 
 vec2 uv_curve(vec2 uv)
 {
 	
-	uv = (uv - 0.5) * 2.0;
+	uv = (uv - 0.5) * zoom_in;
 	
 	//You can modify the numbers and try different values
 	uv.x *= 1.0 + pow(abs(uv.y) / 3.0, 2.0);

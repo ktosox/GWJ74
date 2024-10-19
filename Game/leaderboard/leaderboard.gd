@@ -2,7 +2,7 @@ extends CanvasLayer
 
 
 func _ready() -> void:
-	$HighScores.create_empty_score(20)
+	$HighScores.create_empty_score(GM.current_player_score)
 
 
 func _on_keyboard_key_selected(key: String) -> void:

@@ -178,6 +178,20 @@ tracks/4/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DeathSound")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s1pyg"]
 _data = {
@@ -438,5 +452,10 @@ transform = Transform3D(1, 0, 0, 0, 0.117901, -0.993025, 0, 0.993025, 0.117901, 
 mesh = SubResource("SphereMesh_eox3j")
 skeleton = NodePath("../..")
 
+[node name="FuelUseTimer" type="Timer" parent="."]
+wait_time = 2.5
+autostart = true
+
 [connection signal="timeout" from="GunCooldown" to="." method="_on_gun_cooldown_timeout"]
 [connection signal="timeout" from="ZA_WARUDO_Cooldown" to="." method="_on_za_warudo_cooldown_timeout"]
+[connection signal="timeout" from="FuelUseTimer" to="." method="_on_fuel_use_timer_timeout"]

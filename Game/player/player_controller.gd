@@ -21,6 +21,7 @@ var ZA_WARUDO_ready = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GM.connect("fuel_changed",Callable(self,"fuel_check"))
 	pass # Replace with function body.
 
 func _input(event: InputEvent) -> void:
@@ -81,13 +82,29 @@ func get_hit() -> void:
 	if GM.report_player_damage():
 		set_physics_process(false)
 		get_tree().paused = true
+		$FuelUseTimer.stop()
 		$DamageAnimator.play("get_killed")
-		$DeathSound.play()
 	else:
 		$DamageSound.play()
 		$DamageAnimator.play("get_hit")
 
 	pass
+
+func fuel_check(fuel_left) -> void:
+	if fuel_left > 0:
+		return
+	set_physics_process(false)
+	$ShipBody/TubeRight/CPUParticles3D.emitting = false
+	$ShipBody/TubeLeft/CPUParticles3D2.emitting = false
+	get_tree().paused = true
+	$FuelUseTimer.stop()
+	var fall_tween = create_tween()
+	fall_tween.tween_property(self,"transform:origin:y",-3.5,2)
+	fall_tween.play()
+	await fall_tween.finished
+	$DamageAnimator.play("get_killed")
+	pass
+
 
 func end_game() -> void:
 	GM.end_game()
@@ -104,4 +121,9 @@ func _on_gun_cooldown_timeout() -> void:
 func _on_za_warudo_cooldown_timeout() -> void:
 	ZA_WARUDO_ready = true
 	time_orb_material.emission_energy_multiplier = 5
+	pass # Replace with function body.
+
+
+func _on_fuel_use_timer_timeout() -> void:
+	GM.report_fuel_use()
 	pass # Replace with function body.

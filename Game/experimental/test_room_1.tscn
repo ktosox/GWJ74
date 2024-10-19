@@ -1,12 +1,15 @@
-[gd_scene load_steps=28 format=3 uid="uid://cqxedbhhrmr4s"]
+[gd_scene load_steps=34 format=3 uid="uid://cqxedbhhrmr4s"]
 
 [ext_resource type="PackedScene" uid="uid://cmfs7ntje0ay6" path="res://player/player_controller.tscn" id="1_10j6n"]
 [ext_resource type="Script" path="res://experimental/test_room_1.gd" id="1_acl2q"]
 [ext_resource type="PackedScene" uid="uid://cbyg1rbre0yrd" path="res://experimental/wall_of_death.tscn" id="3_3wmx7"]
+[ext_resource type="Texture2D" uid="uid://dirg4204xw5sg" path="res://experimental/floor_texture.png" id="4_6fi8f"]
 [ext_resource type="Shader" path="res://experimental/screen_shader.gdshader" id="4_cbxow"]
 [ext_resource type="Script" path="res://experimental/overlay.gd" id="4_gysla"]
 [ext_resource type="Theme" uid="uid://em0x4hcgcgxj" path="res://resources/fonts/basic_font.tres" id="4_q4k85"]
 [ext_resource type="AudioStream" uid="uid://bvqech1avcgd" path="res://resources/music/Prelude and Action.mp3" id="7_guidh"]
+[ext_resource type="Theme" uid="uid://7mmlar7dbofy" path="res://resources/fonts/welcome_font.tres" id="8_5a1m6"]
+[ext_resource type="FontFile" uid="uid://chpylqhq4ka8d" path="res://resources/fonts/HydratingLip.ttf" id="9_nu7yr"]
 
 [sub_resource type="Environment" id="Environment_odgyf"]
 background_mode = 1
@@ -116,15 +119,21 @@ _data = {
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ev5k"]
 render_priority = 1
 depth_draw_mode = 2
+shading_mode = 0
 albedo_color = Color(0.60029, 0.899106, 0.929981, 1)
+albedo_texture = ExtResource("4_6fi8f")
+texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_y3xvx"]
 material = SubResource("StandardMaterial3D_5ev5k")
 size = Vector2(10, 80)
 
+[sub_resource type="Animation" id="Animation_av6cv"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_qhk2p"]
 resource_name = "new_animation"
-length = 9.0
+length = 12.0
 loop_mode = 1
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -133,7 +142,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1.5, 4.6, 6.96667),
+"times": PackedFloat32Array(1.5, 4.6, 8.53333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
@@ -146,9 +155,20 @@ tracks/0/keys = {
 "method": &"spawn_box"
 }]
 }
-
-[sub_resource type="Animation" id="Animation_av6cv"]
-length = 0.001
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("SpookyStuff")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(11.5333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"black_out", -1, 1.0, false],
+"method": &"play"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0hagh"]
 _data = {
@@ -161,6 +181,22 @@ shader = ExtResource("4_cbxow")
 shader_parameter/scanline_count = 200.0
 shader_parameter/color_offset = Vector3(0, -1, 1)
 shader_parameter/x_scale_rate = 1.1
+shader_parameter/zoom_in = 2.0
+
+[sub_resource type="Animation" id="Animation_cbuob"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Overlay/ScreenEffect:material:shader_parameter/x_scale_rate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.1]
+}
 
 [sub_resource type="Animation" id="Animation_5d342"]
 resource_name = "new_animation"
@@ -178,25 +214,71 @@ tracks/0/keys = {
 "values": [30.0, 1.1]
 }
 
-[sub_resource type="Animation" id="Animation_cbuob"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w5y22"]
+_data = {
+"RESET": SubResource("Animation_cbuob"),
+"new_animation": SubResource("Animation_5d342")
+}
+
+[sub_resource type="Animation" id="Animation_v6bvn"]
+resource_name = "black_out"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Overlay/BlackOut:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.766667, 1.03333, 1.36667, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Overlay/BlackOut/Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_2rg8a"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Overlay/ScreenEffect:material:shader_parameter/x_scale_rate")
+tracks/0/path = NodePath("Overlay/BlackOut:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.1]
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Overlay/BlackOut/Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_w5y22"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6qblr"]
 _data = {
-"RESET": SubResource("Animation_cbuob"),
-"new_animation": SubResource("Animation_5d342")
+"RESET": SubResource("Animation_2rg8a"),
+"black_out": SubResource("Animation_v6bvn")
 }
 
 [node name="TestRoom1" type="Node3D"]
@@ -206,7 +288,7 @@ script = ExtResource("1_acl2q")
 environment = SubResource("Environment_odgyf")
 
 [node name="PlayerController" parent="." instance=ExtResource("1_10j6n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.948113, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.358, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
@@ -361,20 +443,12 @@ autoplay = "new_animation"
 [node name="Overlay" type="CanvasLayer" parent="."]
 script = ExtResource("4_gysla")
 
-[node name="ScreenEffect" type="ColorRect" parent="Overlay"]
-material = SubResource("ShaderMaterial_l35na")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="TopLayout" type="HBoxContainer" parent="Overlay"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 14.0
-offset_right = -27.0
-offset_bottom = 123.0
+offset_left = 29.0
+offset_right = -52.0
+offset_bottom = 112.0
 grow_horizontal = 2
 
 [node name="Health" type="Label" parent="Overlay/TopLayout"]
@@ -391,15 +465,148 @@ layout_mode = 2
 theme = ExtResource("4_q4k85")
 text = "score: 0"
 
+[node name="Fuel" type="Label" parent="Overlay"]
+modulate = Color(1, 0.537255, 1, 1)
+offset_left = 18.0
+offset_top = 720.0
+offset_right = 138.0
+offset_bottom = 744.0
+theme = ExtResource("8_5a1m6")
+text = "FUEL:"
+
+[node name="FuelBars" type="HBoxContainer" parent="Overlay"]
+modulate = Color(1, 0.537255, 1, 1)
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 124.0
+offset_top = 320.0
+offset_right = 2.0
+offset_bottom = 343.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Overlay/FuelBars"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Overlay/FuelBars"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="ColorRect3" type="ColorRect" parent="Overlay/FuelBars"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="ColorRect4" type="ColorRect" parent="Overlay/FuelBars"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="ColorRect5" type="ColorRect" parent="Overlay/FuelBars"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="ColorRect6" type="ColorRect" parent="Overlay/FuelBars"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="ColorRect7" type="ColorRect" parent="Overlay/FuelBars"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="ColorRect8" type="ColorRect" parent="Overlay/FuelBars"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="ColorRect9" type="ColorRect" parent="Overlay/FuelBars"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="ColorRect10" type="ColorRect" parent="Overlay/FuelBars"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="ColorRect11" type="ColorRect" parent="Overlay/FuelBars"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="ColorRect12" type="ColorRect" parent="Overlay/FuelBars"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="ColorRect13" type="ColorRect" parent="Overlay/FuelBars"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="ColorRect14" type="ColorRect" parent="Overlay/FuelBars"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="ColorRect15" type="ColorRect" parent="Overlay/FuelBars"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="BlackOut" type="ColorRect" parent="Overlay"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Overlay/BlackOut"]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 239.0
+offset_right = 431.0
+offset_bottom = 650.0
+theme_override_colors/font_outline_color = Color(0, 0, 0.901961, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("9_nu7yr")
+theme_override_font_sizes/font_size = 128
+text = "GET
+OUT"
+
+[node name="ScreenEffect" type="ColorRect" parent="Overlay"]
+material = SubResource("ShaderMaterial_l35na")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Music" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("7_guidh")
 autoplay = true
+bus = &"Music"
 
 [node name="Intro" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_w5y22")
 }
 autoplay = "new_animation"
+
+[node name="SpookyStuff" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6qblr")
+}
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 
