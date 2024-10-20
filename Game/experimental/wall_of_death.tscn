@@ -4,24 +4,21 @@
 [ext_resource type="Script" path="res://experimental/wall_of_death.gd" id="1_sxest"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rghjs"]
+render_priority = 1
 transparency = 1
 blend_mode = 1
-albedo_color = Color(1, 0.294118, 0.282353, 1)
-metallic = 0.75
-metallic_specular = 0.0
-roughness = 0.0
-subsurf_scatter_strength = 1.0
-proximity_fade_enabled = true
+shading_mode = 0
+albedo_color = Color(0.737255, 0, 0.0941176, 1)
 proximity_fade_distance = 0.5
 distance_fade_max_distance = 6.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_rn3yc"]
 material = SubResource("StandardMaterial3D_rghjs")
-size = Vector3(4, 10, 2)
+size = Vector3(4, 8, 2)
 
 [sub_resource type="BoxMesh" id="BoxMesh_32sqn"]
 material = ExtResource("1_i8nun")
-size = Vector3(0.2, 10, 2)
+size = Vector3(0.2, 8, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hnr72"]
 size = Vector3(4, 10, 2)

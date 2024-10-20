@@ -97,8 +97,8 @@ func fuel_check(fuel_left) -> void:
 	set_physics_process(false)
 	$ShipBody/TubeRight/CPUParticles3D.emitting = false
 	$ShipBody/TubeLeft/CPUParticles3D2.emitting = false
-	get_tree().paused = true
 	$FuelUseTimer.stop()
+	can_be_hit = false
 	var fall_tween = create_tween()
 	fall_tween.tween_property(self,"transform:origin:y",-3.5,2)
 	fall_tween.play()
@@ -113,7 +113,7 @@ func end_game() -> void:
 
 func _on_gun_cooldown_timeout() -> void:
 	gun_ready = true
-	gun_orb_material.emission_energy_multiplier = 5
+	gun_orb_material.emission_energy_multiplier = 10
 	if Input.is_action_pressed("button_A"):
 		fire_gun()
 	pass # Replace with function body.
@@ -121,7 +121,7 @@ func _on_gun_cooldown_timeout() -> void:
 
 func _on_za_warudo_cooldown_timeout() -> void:
 	ZA_WARUDO_ready = true
-	time_orb_material.emission_energy_multiplier = 5
+	time_orb_material.emission_energy_multiplier = 10
 	pass # Replace with function body.
 
 

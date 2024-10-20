@@ -13,15 +13,16 @@
 
 [sub_resource type="Environment" id="Environment_odgyf"]
 background_mode = 1
-background_color = Color(0.254902, 0.231373, 0.611765, 1)
-background_energy_multiplier = 0.5
+background_color = Color(0.147021, 0.12945, 0.385116, 1)
+background_energy_multiplier = 0.25
 ambient_light_source = 2
-ambient_light_color = Color(1, 1, 1, 1)
-tonemap_exposure = 0.3
+ambient_light_color = Color(0.775063, 0.775063, 0.775063, 1)
+ambient_light_energy = 3.0
+tonemap_exposure = 0.2
 glow_enabled = true
-glow_intensity = 0.63
+glow_intensity = 1.5
 glow_strength = 0.61
-glow_bloom = 1.0
+glow_bloom = 0.4
 glow_blend_mode = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tk620"]
