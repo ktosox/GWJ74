@@ -19,6 +19,8 @@ var ZA_WARUDO_ready = true
 
 @export var can_be_hit = true
 
+var first_time_stop = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GM.connect("fuel_changed",Callable(self,"fuel_check"))

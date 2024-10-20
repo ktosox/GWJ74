@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://7mmlar7dbofy" path="res://resources/fonts/welcome_font.tres" id="1_jl3sd"]
 [ext_resource type="Script" path="res://welcome/welcome_screen.gd" id="1_rlqjn"]
-[ext_resource type="FontFile" uid="uid://buu01vh51e0y8" path="res://resources/fonts/CommodoreServer.ttf" id="2_pvntt"]
+[ext_resource type="FontFile" uid="uid://n4p1owuaodks" path="res://resources/fonts/classic_memesbruh03.ttf" id="3_8asto"]
 
 [sub_resource type="Animation" id="Animation_l0ypd"]
 length = 0.001
@@ -42,8 +42,8 @@ _data = {
 }
 
 [sub_resource type="Theme" id="Theme_txnar"]
-Button/font_sizes/font_size = 32
-Button/fonts/font = ExtResource("2_pvntt")
+Button/font_sizes/font_size = 20
+Button/fonts/font = ExtResource("3_8asto")
 
 [node name="WelcomeScreen" type="CanvasLayer"]
 script = ExtResource("1_rlqjn")
@@ -64,26 +64,69 @@ color = Color(0.136782, 0.248637, 0, 1)
 
 [node name="Label" type="Label" parent="InputSetup"]
 layout_mode = 0
-offset_left = 37.0
-offset_top = 116.0
-offset_right = 541.0
-offset_bottom = 140.0
+offset_left = 45.0
+offset_top = 17.0
+offset_right = 549.0
+offset_bottom = 41.0
 theme = ExtResource("1_jl3sd")
 text = "these are the inputs:"
 uppercase = true
 
+[node name="Label11" type="Label" parent="InputSetup"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 291.0
+offset_right = 551.0
+offset_bottom = 315.0
+theme = ExtResource("1_jl3sd")
+text = "click to change"
+uppercase = true
+
 [node name="Label2" type="Label" parent="InputSetup"]
 layout_mode = 0
-offset_left = 50.0
-offset_top = 580.0
-offset_right = 554.0
-offset_bottom = 712.0
+offset_left = 46.0
+offset_top = 647.0
+offset_right = 550.0
+offset_bottom = 779.0
 theme = ExtResource("1_jl3sd")
 text = "enter the code below 
-to power up your
-super phase boosters
+to start the game
 
  -> -> B <- A"
+uppercase = true
+
+[node name="Label8" type="Label" parent="InputSetup"]
+modulate = Color(1, 0.203922, 0.184314, 1)
+layout_mode = 0
+offset_left = 44.0
+offset_top = 465.0
+offset_right = 548.0
+offset_bottom = 597.0
+theme = ExtResource("1_jl3sd")
+text = "avoid red hazards"
+uppercase = true
+
+[node name="Label10" type="Label" parent="InputSetup"]
+modulate = Color(1, 0.439216, 1, 1)
+layout_mode = 0
+offset_left = 44.0
+offset_top = 384.0
+offset_right = 548.0
+offset_bottom = 516.0
+theme = ExtResource("1_jl3sd")
+text = "collect pink fuel"
+uppercase = true
+
+[node name="Label9" type="Label" parent="InputSetup"]
+modulate = Color(1, 1, 0.482353, 1)
+layout_mode = 0
+offset_left = 37.0
+offset_top = 548.0
+offset_right = 541.0
+offset_bottom = 680.0
+theme = ExtResource("1_jl3sd")
+text = "destroy yellow boxes
+for bonus points"
 uppercase = true
 
 [node name="Label3" type="Label" parent="InputSetup"]
@@ -99,30 +142,30 @@ uppercase = true
 
 [node name="Label4" type="Label" parent="InputSetup"]
 layout_mode = 0
-offset_left = 194.0
-offset_top = 202.0
-offset_right = 242.0
-offset_bottom = 226.0
+offset_left = 189.0
+offset_top = 61.0
+offset_right = 237.0
+offset_bottom = 85.0
 theme = ExtResource("1_jl3sd")
 text = "->"
 uppercase = true
 
 [node name="Label5" type="Label" parent="InputSetup"]
 layout_mode = 0
-offset_left = 63.0
-offset_top = 199.0
-offset_right = 111.0
-offset_bottom = 223.0
+offset_left = 58.0
+offset_top = 58.0
+offset_right = 106.0
+offset_bottom = 82.0
 theme = ExtResource("1_jl3sd")
 text = "<-"
 uppercase = true
 
 [node name="Label6" type="Label" parent="InputSetup"]
 layout_mode = 0
-offset_left = 73.0
-offset_top = 358.0
-offset_right = 121.0
-offset_bottom = 382.0
+offset_left = 68.0
+offset_top = 217.0
+offset_right = 116.0
+offset_bottom = 241.0
 rotation = 4.71239
 theme = ExtResource("1_jl3sd")
 text = "->"
@@ -130,10 +173,10 @@ uppercase = true
 
 [node name="Label7" type="Label" parent="InputSetup"]
 layout_mode = 0
-offset_left = 230.0
-offset_top = 309.0
-offset_right = 278.0
-offset_bottom = 333.0
+offset_left = 225.0
+offset_top = 168.0
+offset_right = 273.0
+offset_bottom = 192.0
 rotation = 1.5708
 theme = ExtResource("1_jl3sd")
 text = "->"
@@ -141,77 +184,86 @@ uppercase = true
 
 [node name="Label12" type="Label" parent="InputSetup"]
 layout_mode = 0
-offset_left = 359.0
-offset_top = 202.0
-offset_right = 551.0
-offset_bottom = 226.0
+offset_left = 354.0
+offset_top = 61.0
+offset_right = 546.0
+offset_bottom = 85.0
 theme = ExtResource("1_jl3sd")
 text = "button a"
 uppercase = true
 
 [node name="Label13" type="Label" parent="InputSetup"]
 layout_mode = 0
-offset_left = 359.0
-offset_top = 326.0
-offset_right = 551.0
-offset_bottom = 350.0
+offset_left = 354.0
+offset_top = 185.0
+offset_right = 546.0
+offset_bottom = 209.0
 theme = ExtResource("1_jl3sd")
 text = "button b"
 uppercase = true
 
-[node name="Button" type="Button" parent="InputSetup"]
+[node name="Left" type="Button" parent="InputSetup"]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 244.0
-offset_right = 132.0
-offset_bottom = 284.0
+offset_left = 35.0
+offset_top = 103.0
+offset_right = 127.0
+offset_bottom = 143.0
 theme = SubResource("Theme_txnar")
 text = "A"
 
-[node name="Button4" type="Button" parent="InputSetup"]
+[node name="Up" type="Button" parent="InputSetup"]
 layout_mode = 0
-offset_left = 42.0
-offset_top = 372.0
-offset_right = 134.0
-offset_bottom = 412.0
+offset_left = 37.0
+offset_top = 231.0
+offset_right = 129.0
+offset_bottom = 271.0
 theme = SubResource("Theme_txnar")
 text = "W"
 
-[node name="Button5" type="Button" parent="InputSetup"]
+[node name="Down" type="Button" parent="InputSetup"]
 layout_mode = 0
-offset_left = 183.0
-offset_top = 374.0
-offset_right = 275.0
-offset_bottom = 414.0
+offset_left = 178.0
+offset_top = 233.0
+offset_right = 270.0
+offset_bottom = 273.0
 theme = SubResource("Theme_txnar")
 text = "S"
 
-[node name="Button6" type="Button" parent="InputSetup"]
+[node name="ButtonB" type="Button" parent="InputSetup"]
 layout_mode = 0
-offset_left = 366.0
-offset_top = 376.0
-offset_right = 534.0
-offset_bottom = 416.0
+offset_left = 361.0
+offset_top = 235.0
+offset_right = 529.0
+offset_bottom = 275.0
 theme = SubResource("Theme_txnar")
 text = "SHIFT"
 
-[node name="Button2" type="Button" parent="InputSetup"]
+[node name="Right" type="Button" parent="InputSetup"]
 layout_mode = 0
-offset_left = 179.0
-offset_top = 242.0
-offset_right = 271.0
-offset_bottom = 282.0
+offset_left = 174.0
+offset_top = 101.0
+offset_right = 266.0
+offset_bottom = 141.0
 theme = SubResource("Theme_txnar")
 text = "D"
 
-[node name="Button3" type="Button" parent="InputSetup"]
+[node name="ButtonA" type="Button" parent="InputSetup"]
 layout_mode = 0
-offset_left = 360.0
-offset_top = 243.0
-offset_right = 528.0
-offset_bottom = 283.0
+offset_left = 355.0
+offset_top = 102.0
+offset_right = 523.0
+offset_bottom = 142.0
 theme = SubResource("Theme_txnar")
 text = "SPACE"
+
+[node name="MouseBlocker" type="Control" parent="InputSetup"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Warning" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -247,3 +299,10 @@ text = "this game contains:
             narrative
 "
 uppercase = true
+
+[connection signal="pressed" from="InputSetup/Left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="InputSetup/Up" to="." method="_on_up_pressed"]
+[connection signal="pressed" from="InputSetup/Down" to="." method="_on_down_pressed"]
+[connection signal="pressed" from="InputSetup/ButtonB" to="." method="_on_button_b_pressed"]
+[connection signal="pressed" from="InputSetup/Right" to="." method="_on_right_pressed"]
+[connection signal="pressed" from="InputSetup/ButtonA" to="." method="_on_button_a_pressed"]

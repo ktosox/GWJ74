@@ -81,7 +81,7 @@ _data = {
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_si4xc"]
 render_priority = -1
 depth_draw_mode = 2
-albedo_color = Color(0.0462653, 0.216254, 0.0441398, 1)
+albedo_color = Color(0.799976, 0.751897, 0, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_j1bxo"]
 material = SubResource("StandardMaterial3D_si4xc")
@@ -95,7 +95,7 @@ cap_bottom = false
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ohxj"]
 depth_draw_mode = 2
-albedo_color = Color(0.074508, 0.356071, 0.487583, 1)
+albedo_color = Color(0.593034, 0.510849, 0.124467, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_q54sh"]
 material = SubResource("StandardMaterial3D_2ohxj")
