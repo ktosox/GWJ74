@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ca7bhjj8migcc"]
+[gd_scene load_steps=9 format=3 uid="uid://ca7bhjj8migcc"]
 
 [ext_resource type="Theme" uid="uid://7mmlar7dbofy" path="res://resources/fonts/welcome_font.tres" id="1_jl3sd"]
 [ext_resource type="Script" path="res://welcome/welcome_screen.gd" id="1_rlqjn"]
 [ext_resource type="FontFile" uid="uid://n4p1owuaodks" path="res://resources/fonts/classic_memesbruh03.ttf" id="3_8asto"]
+[ext_resource type="AudioStream" uid="uid://ddcvioi3kbny" path="res://resources/sounds/wow.ogg" id="4_2dt2r"]
 
 [sub_resource type="Animation" id="Animation_l0ypd"]
 length = 0.001
@@ -16,12 +17,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_7qxvc"]
 resource_name = "start"
-length = 5.0
+length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -29,7 +30,7 @@ tracks/0/path = NodePath("Warning:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 5),
+"times": PackedFloat32Array(0, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -82,6 +83,16 @@ offset_right = 551.0
 offset_bottom = 315.0
 theme = ExtResource("1_jl3sd")
 text = "click to change"
+uppercase = true
+
+[node name="Label14" type="Label" parent="InputSetup"]
+layout_mode = 0
+offset_left = 456.0
+offset_top = 316.0
+offset_right = 960.0
+offset_bottom = 340.0
+theme = ExtResource("1_jl3sd")
+text = "volume"
 uppercase = true
 
 [node name="Label2" type="Label" parent="InputSetup"]
@@ -273,7 +284,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="VSlider" type="VSlider" parent="InputSetup"]
+offset_left = 526.0
+offset_top = 349.0
+offset_right = 542.0
+offset_bottom = 540.0
+min_value = -30.0
+max_value = 10.0
+value = 5.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="InputSetup/VSlider"]
+stream = ExtResource("4_2dt2r")
+
 [node name="Warning" type="ColorRect" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -314,3 +338,4 @@ uppercase = true
 [connection signal="pressed" from="InputSetup/ButtonB" to="." method="_on_button_b_pressed"]
 [connection signal="pressed" from="InputSetup/Right" to="." method="_on_right_pressed"]
 [connection signal="pressed" from="InputSetup/ButtonA" to="." method="_on_button_a_pressed"]
+[connection signal="value_changed" from="InputSetup/VSlider" to="." method="_on_v_slider_value_changed"]

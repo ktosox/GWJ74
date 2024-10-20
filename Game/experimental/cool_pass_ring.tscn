@@ -1,6 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://ccvm061b7e5vh"]
 
 [ext_resource type="Script" path="res://experimental/cool_pass_ring.gd" id="1_qysm4"]
+[ext_resource type="Material" uid="uid://5pmqrvmi0qvb" path="res://experimental/cool_pass_ring_material_1.tres" id="2_xuyvt"]
+[ext_resource type="Material" uid="uid://dg2inh4ujqifu" path="res://experimental/cool_pass_ring_material_2.tres" id="3_ye24h"]
 
 [sub_resource type="Animation" id="Animation_6bi6a"]
 length = 0.001
@@ -78,13 +80,8 @@ _data = {
 "new_animation": SubResource("Animation_6bocv")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_si4xc"]
-render_priority = -1
-depth_draw_mode = 2
-albedo_color = Color(0.799976, 0.751897, 0, 1)
-
 [sub_resource type="CylinderMesh" id="CylinderMesh_j1bxo"]
-material = SubResource("StandardMaterial3D_si4xc")
+material = ExtResource("2_xuyvt")
 flip_faces = true
 top_radius = 0.9
 bottom_radius = 0.8
@@ -93,12 +90,8 @@ radial_segments = 12
 cap_top = false
 cap_bottom = false
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ohxj"]
-depth_draw_mode = 2
-albedo_color = Color(0.593034, 0.510849, 0.124467, 1)
-
 [sub_resource type="CylinderMesh" id="CylinderMesh_q54sh"]
-material = SubResource("StandardMaterial3D_2ohxj")
+material = ExtResource("3_ye24h")
 flip_faces = true
 top_radius = 0.8
 bottom_radius = 0.7

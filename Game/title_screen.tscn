@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://cf40b4d4h12gl"]
+
+[ext_resource type="FontFile" uid="uid://dmpexfosocgea" path="res://resources/fonts/FreudianSlip.ttf" id="1_s4poe"]
+[ext_resource type="Shader" path="res://experimental/screen_shader.gdshader" id="2_pssf4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ei0rw"]
+shader = ExtResource("2_pssf4")
+shader_parameter/scanline_count = 200.0
+shader_parameter/color_offset = Vector3(-0.275, 3.955, 3.65)
+shader_parameter/x_scale_rate = 1.46
+shader_parameter/zoom_in = 2.545
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 84.0
+offset_top = 124.0
+offset_right = 84.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.217763, 7.20036e-05, 0.758016, 1)
+theme_override_colors/font_shadow_color = Color(0.431282, 0.611583, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 8
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("1_s4poe")
+theme_override_font_sizes/font_size = 90
+text = "Epic
+Galaxy
+Getaway
+3000"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ei0rw")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

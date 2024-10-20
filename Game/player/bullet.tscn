@@ -1,16 +1,13 @@
 [gd_scene load_steps=7 format=3 uid="uid://53so2jf7jyjo"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_chyue"]
-shading_mode = 2
-albedo_color = Color(1, 1, 0.298039, 1)
-emission_enabled = true
-emission = Color(1, 1, 0.309804, 1)
-emission_energy_multiplier = 4.0
+[ext_resource type="Material" uid="uid://kgo4einhwkpk" path="res://player/bullet_material.tres" id="1_2bw2f"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_ql57l"]
-material = SubResource("StandardMaterial3D_chyue")
+material = ExtResource("1_2bw2f")
 radius = 0.2
 height = 0.4
+radial_segments = 8
+rings = 4
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n42bj"]
 radius = 0.35

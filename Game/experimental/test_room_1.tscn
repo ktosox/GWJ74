@@ -1,7 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://cqxedbhhrmr4s"]
+[gd_scene load_steps=34 format=3 uid="uid://cqxedbhhrmr4s"]
 
 [ext_resource type="Script" path="res://experimental/test_room_1.gd" id="1_acl2q"]
 [ext_resource type="PackedScene" uid="uid://cbyg1rbre0yrd" path="res://experimental/wall_of_death.tscn" id="3_3wmx7"]
+[ext_resource type="PackedScene" uid="uid://hppb7p7mr6gc" path="res://experimental/fuel.tscn" id="3_ossnl"]
 [ext_resource type="Texture2D" uid="uid://dirg4204xw5sg" path="res://experimental/floor_texture.png" id="4_6fi8f"]
 [ext_resource type="Shader" path="res://experimental/screen_shader.gdshader" id="4_cbxow"]
 [ext_resource type="Script" path="res://experimental/overlay.gd" id="4_gysla"]
@@ -157,7 +158,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_7w1nx"]
 resource_name = "chapter1"
-length = 12.0
+length = 20.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -165,17 +166,14 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.6, 2.43333, 3.46667, 5.03333, 5.73333, 7.33333, 8.93333, 10.4333, 11.3333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.6, 3.1, 4.56667, 5.73333, 7.33333, 8.93333, 10.2, 12.5, 14.0667, 16.8667, 18.1, 19.0333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "values": [{
 "args": [4],
 "method": &"spawn_box"
 }, {
-"args": [5],
+"args": [0],
 "method": &"spawn_fuel"
-}, {
-"args": [1],
-"method": &"spawn_box"
 }, {
 "args": [2],
 "method": &"spawn_box"
@@ -189,11 +187,23 @@ tracks/0/keys = {
 "args": [4],
 "method": &"spawn_box"
 }, {
-"args": [3],
+"args": [4],
 "method": &"spawn_fuel"
+}, {
+"args": [-1],
+"method": &"spawn_box"
 }, {
 "args": [1],
 "method": &"spawn_box"
+}, {
+"args": [-1],
+"method": &"spawn_box"
+}, {
+"args": [1],
+"method": &"spawn_box"
+}, {
+"args": [-1],
+"method": &"spawn_fuel"
 }]
 }
 tracks/1/type = "method"
@@ -203,7 +213,7 @@ tracks/1/path = NodePath("CenterMiddle/WallOfDeath1")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.23333, 6.8, 11.9),
+"times": PackedFloat32Array(1.23333, 6.8, 12.4333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": ["left"],
@@ -223,7 +233,98 @@ tracks/2/path = NodePath("CenterMiddle/WallOfDeath2")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(3.9, 10.7),
+"times": PackedFloat32Array(3.9, 11.0667, 18.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": ["right"],
+"method": &"play_animation"
+}, {
+"args": ["left"],
+"method": &"play_animation"
+}, {
+"args": ["right"],
+"method": &"play_animation"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_8j3r1"]
+resource_name = "chapter2"
+length = 24.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.4, 4.56667, 5.73333, 6.93333, 7.76667, 9.93333, 12.8333, 15.6, 17.4333, 18.1, 21.4333, 23.2333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [5],
+"method": &"spawn_box"
+}, {
+"args": [2],
+"method": &"spawn_box"
+}, {
+"args": [4],
+"method": &"spawn_box"
+}, {
+"args": [1],
+"method": &"spawn_fuel"
+}, {
+"args": [1],
+"method": &"spawn_box"
+}, {
+"args": [-1],
+"method": &"spawn_box"
+}, {
+"args": [4],
+"method": &"spawn_box"
+}, {
+"args": [],
+"method": &"swap_box"
+}, {
+"args": [3],
+"method": &"spawn_fuel"
+}, {
+"args": [1],
+"method": &"spawn_box"
+}, {
+"args": [],
+"method": &"swap_box"
+}, {
+"args": [-1],
+"method": &"spawn_fuel"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterMiddle/WallOfDeath1")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.93333, 8.9, 15.7667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": ["left"],
+"method": &"play_animation"
+}, {
+"args": ["left"],
+"method": &"play_animation"
+}, {
+"args": ["right"],
+"method": &"play_animation"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterMiddle/WallOfDeath2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5.96667, 16.3),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": ["right"],
@@ -234,13 +335,205 @@ tracks/2/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_n2iut"]
+resource_name = "chapter3"
+length = 20.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.83333, 4.16667, 4.56667, 5.73333, 7.76667, 9.93333, 10.5, 12.3, 13.6667, 16.4667, 18.1, 19.1333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [5],
+"method": &"spawn_box"
+}, {
+"args": [1],
+"method": &"spawn_fuel"
+}, {
+"args": [2],
+"method": &"spawn_box"
+}, {
+"args": [4],
+"method": &"spawn_box"
+}, {
+"args": [1],
+"method": &"spawn_box"
+}, {
+"args": [0],
+"method": &"spawn_box"
+}, {
+"args": [3],
+"method": &"spawn_fuel"
+}, {
+"args": [],
+"method": &"swap_box"
+}, {
+"args": [4],
+"method": &"spawn_box"
+}, {
+"args": [-1],
+"method": &"spawn_box"
+}, {
+"args": [1],
+"method": &"spawn_box"
+}, {
+"args": [4],
+"method": &"spawn_fuel"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterMiddle/WallOfDeath1")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.93333, 8.9, 17.8667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": ["left_spooky"],
+"method": &"play_animation"
+}, {
+"args": ["left"],
+"method": &"play_animation"
+}, {
+"args": ["right"],
+"method": &"play_animation"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterMiddle/WallOfDeath2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5.96667, 14.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["right"],
+"method": &"play_animation"
+}, {
+"args": ["right_spooky"],
+"method": &"play_animation"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_0ik1w"]
+resource_name = "chapter4"
+length = 26.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.83333, 5.73333, 7.03333, 7.76667, 9, 9.93333, 12.3, 13.6667, 15.8667, 18.1, 20.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [5],
+"method": &"spawn_box"
+}, {
+"args": [4],
+"method": &"spawn_box"
+}, {
+"args": [3],
+"method": &"spawn_fuel"
+}, {
+"args": [1],
+"method": &"spawn_box"
+}, {
+"args": [1],
+"method": &"spawn_fuel"
+}, {
+"args": [0],
+"method": &"spawn_box"
+}, {
+"args": [],
+"method": &"swap_box"
+}, {
+"args": [4],
+"method": &"spawn_box"
+}, {
+"args": [-1],
+"method": &"spawn_box"
+}, {
+"args": [1],
+"method": &"spawn_box"
+}, {
+"args": [-1],
+"method": &"spawn_box"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterMiddle/WallOfDeath1")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5.2, 15.3333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["left_spooky"],
+"method": &"play_animation"
+}, {
+"args": ["right"],
+"method": &"play_animation"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterMiddle/WallOfDeath2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.3, 10.8667, 21.2667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": ["right_spooky"],
+"method": &"play_animation"
+}, {
+"args": ["left"],
+"method": &"play_animation"
+}, {
+"args": ["right_spooky"],
+"method": &"play_animation"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l4vef"]
 _data = {
-"chapter1": SubResource("Animation_7w1nx")
+"chapter1": SubResource("Animation_7w1nx"),
+"chapter2": SubResource("Animation_8j3r1"),
+"chapter3": SubResource("Animation_n2iut"),
+"chapter4": SubResource("Animation_0ik1w")
 }
 
 [sub_resource type="Animation" id="Animation_62gqd"]
 resource_name = "new_animation"
+length = 3.4
+loop_mode = 1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"swap_box"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yb3wb"]
 _data = {
@@ -304,6 +597,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
 [node name="TopRight" type="Path3D" parent="Spawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 0)
 curve = SubResource("Curve3D_x1t1j")
+
+[node name="Fuel" parent="Spawner/TopRight" instance=ExtResource("3_ossnl")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Box2" parent="Spawner/TopRight" instance=ExtResource("4_koxog")]
 transform = Transform3D(-0.4, 0, -3.49691e-08, 0, 0.4, 0, 3.49691e-08, 0, -0.4, 0, 0, 0)
@@ -508,6 +804,22 @@ grow_vertical = 2
 theme = ExtResource("8_5a1m6")
 text = "OUT OF FUEL"
 
+[node name="NewHighScore" type="Label" parent="Overlay"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -132.0
+offset_top = -12.0
+offset_right = 132.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("8_5a1m6")
+text = "NEW HIGH SCORE"
+
 [node name="ScreenEffect" type="ColorRect" parent="Overlay"]
 material = SubResource("ShaderMaterial_l35na")
 anchors_preset = 15
@@ -552,3 +864,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Overlay/StartSetFuel" to="Overlay" method="_on_start_set_fuel_timeout"]
+[connection signal="animation_finished" from="Levels" to="." method="_on_levels_animation_finished"]

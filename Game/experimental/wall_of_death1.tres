@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dvv8mg3sewdmy"]
+
+[resource]
+render_priority = 1
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+albedo_color = Color(0.737255, 0, 0.0941176, 1)
+proximity_fade_distance = 0.5
+distance_fade_max_distance = 6.0

@@ -1,0 +1,141 @@
+[gd_scene load_steps=11 format=3 uid="uid://b6owbtl7ldnc5"]
+
+[ext_resource type="Script" path="res://leaderboard/leaderboard.gd" id="1_0r3na"]
+[ext_resource type="PackedScene" uid="uid://dfp8hqfluengq" path="res://leaderboard/high_scores.tscn" id="2_vf3nu"]
+[ext_resource type="Theme" uid="uid://btxerb271swt0" path="res://leaderboard/spooky_theme.tres" id="3_1njl8"]
+[ext_resource type="PackedScene" uid="uid://b1sqmxngckw8a" path="res://leaderboard/keyboard.tscn" id="3_u3dyj"]
+[ext_resource type="Shader" path="res://experimental/screen_shader.gdshader" id="4_0mumn"]
+[ext_resource type="AudioStream" uid="uid://cfg338q3tfbhm" path="res://resources/sounds/creepy_sound.ogg" id="6_6phfi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fjkrr"]
+shader = ExtResource("4_0mumn")
+shader_parameter/scanline_count = 200.0
+shader_parameter/color_offset = Vector3(0.75, 0, -0.68)
+shader_parameter/x_scale_rate = 0.6
+shader_parameter/zoom_in = 1.12
+
+[sub_resource type="Animation" id="Animation_s2m1i"]
+resource_name = "new_animation"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_pxfqq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wc1dl"]
+_data = {
+"RESET": SubResource("Animation_pxfqq"),
+"new_animation": SubResource("Animation_s2m1i")
+}
+
+[node name="Leaderboard" type="CanvasLayer"]
+process_mode = 3
+layer = 2
+script = ExtResource("1_0r3na")
+
+[node name="Back" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.351563, 0.351563, 0.351563, 1)
+
+[node name="HighScores" parent="." instance=ExtResource("2_vf3nu")]
+offset_left = 5.0
+offset_top = 109.0
+offset_right = -1.0
+offset_bottom = 346.0
+
+[node name="Score" parent="HighScores/LayoutLeft" index="0"]
+theme = ExtResource("3_1njl8")
+score = 99
+cool_name = "-GET-"
+
+[node name="Score2" parent="HighScores/LayoutLeft" index="1"]
+score = 99
+cool_name = "-OUT-"
+
+[node name="Score3" parent="HighScores/LayoutLeft" index="2"]
+score = 99
+cool_name = "-GET-"
+
+[node name="Score4" parent="HighScores/LayoutLeft" index="3"]
+score = 99
+cool_name = "-OUT-"
+
+[node name="Score5" parent="HighScores/LayoutRight" index="0"]
+score = 99
+cool_name = "-GET-"
+
+[node name="Score6" parent="HighScores/LayoutRight" index="1"]
+score = 99
+cool_name = "-OUT-"
+
+[node name="Score7" parent="HighScores/LayoutRight" index="2"]
+score = 99
+cool_name = "-GET-"
+
+[node name="Score8" parent="HighScores/LayoutRight" index="3"]
+score = 99
+cool_name = "-OUT-"
+
+[node name="Keyboard" parent="." instance=ExtResource("3_u3dyj")]
+process_mode = 4
+block_input = true
+
+[node name="Shader" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_fjkrr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_6phfi")
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wc1dl")
+}
+autoplay = "new_animation"
+
+[connection signal="key_removed" from="Keyboard" to="." method="_on_keyboard_key_removed"]
+[connection signal="key_selected" from="Keyboard" to="." method="_on_keyboard_key_selected"]
+
+[editable path="HighScores"]
+[editable path="Keyboard"]

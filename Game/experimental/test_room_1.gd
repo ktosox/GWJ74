@@ -1,12 +1,13 @@
 extends Node3D
 
-#var fuel_scene = preload("res://experimental/fuel.tscn")
+@onready var fuel_scene = $Spawner/TopRight/Fuel
 #
 #var box_scene = preload("res://experimental/box.tscn")
 
 @onready var boxes = [$Spawner/TopRight/Box,$Spawner/TopRight/Box2,$Spawner/TopRight/Box3,$Spawner/TopRight/Box4,$Spawner/TopRight/Box5]
 
 var left_or_right = ["left","right","left","right"]
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -25,9 +26,23 @@ func start_game():
 	pass
 
 func update_activity_level(level : int):
-	
+	if level == 1:
+		$MoveStuff.play("new_animation")
+	if level == 2:
+		$SpookyStuff.play("black_out")
 	pass
 
+func swap_box():
+
+	var all_valid_lanes = $Spawner.get_children()
+	
+	for box in boxes:
+		if box.visible and box.progress_ratio < 0.7 and box.progress_ratio > 0.2:
+			box.spook()
+			all_valid_lanes.erase(box.get_parent())
+			box.reparent(all_valid_lanes[randi()%all_valid_lanes.size()])
+			return
+	pass
 
 func spawn_box(lane = -1):
 	var free_box
@@ -43,11 +58,12 @@ func spawn_box(lane = -1):
 	pass
 
 func spawn_fuel(lane = -1):
-	#var new_fuel = fuel_scene.instantiate()
-	#if lane == -1:
-		#lane = randi()%$Spawner.get_child_count()
-	#var random_lane = $Spawner.get_children()[lane]
-	#random_lane.add_child(new_fuel)
+	
+	if lane == -1:
+		lane = randi()%$Spawner.get_child_count()
+	var selected_lane = $Spawner.get_children()[lane]
+	fuel_scene.reparent(selected_lane)
+	fuel_scene.reset_fuel()
 	pass
 
 
@@ -62,4 +78,17 @@ func _on_timer_timeout() -> void:
 	#var new_collider = load("res://experimental/test_collider.tscn").instantiate()
 	#
 	#$Spawner.get_children()[randi()%$Spawner.get_child_count()].add_child(new_collider)
+	pass # Replace with function body.
+
+
+func _on_levels_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "chapter1":
+		if GM.current_activity_level == 0 :
+			$Levels.play("chapter2")
+		else:
+			$Levels.play("chapter3")
+	if anim_name == "chapter2":
+		$Levels.play("chapter3")
+	if anim_name == "chapter3":
+		$Levels.play("chapter4")
 	pass # Replace with function body.

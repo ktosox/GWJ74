@@ -6,10 +6,13 @@ func _ready() -> void:
 	GM.connect("health_changed", Callable(self,"set_player_health"))
 	GM.connect("score_changed", Callable(self,"set_player_score"))
 	GM.connect("fuel_changed",Callable(self,"set_player_fuel"))
-	
+	GM.connect("game_won",Callable(self,"new_high_score"))
 	pass
 
-
+func new_high_score():
+	$NewHighScore.visible = true
+	pass
+	
 
 func set_player_health(HP : int) -> void:
 	$TopLayout/Health.text = "HP: " + str(HP)

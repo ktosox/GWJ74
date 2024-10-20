@@ -1,11 +1,12 @@
 [gd_scene load_steps=32 format=3 uid="uid://cmfs7ntje0ay6"]
 
 [ext_resource type="Script" path="res://player/player_controller.gd" id="1_ugusn"]
-[ext_resource type="Material" uid="uid://1jtvmxwejayf" path="res://player/player_material2.tres" id="2_j64ux"]
+[ext_resource type="Material" uid="uid://dwri5j0iivh5u" path="res://player/shield_material.tres" id="2_0h67l"]
 [ext_resource type="Material" uid="uid://bgmbhaunbbvyk" path="res://player/player_material1.tres" id="3_qr2g8"]
 [ext_resource type="AudioStream" uid="uid://bp36rmuwrgmr4" path="res://resources/sounds/pew.ogg" id="4_40u7e"]
 [ext_resource type="AudioStream" uid="uid://vaohkrv07vv0" path="res://resources/sounds/explosions.ogg" id="5_spcdr"]
 [ext_resource type="AudioStream" uid="uid://ddcvioi3kbny" path="res://resources/sounds/wow.ogg" id="5_wi5cj"]
+[ext_resource type="Material" uid="uid://bmfcxjvlq6yk5" path="res://experimental/fuel_material.tres" id="6_76x3w"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4lo5v"]
 radius = 0.8
@@ -200,17 +201,8 @@ _data = {
 "get_killed": SubResource("Animation_v2ban")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0pnmf"]
-transparency = 3
-alpha_hash_scale = 1.0
-alpha_antialiasing_mode = 0
-albedo_color = Color(0.403922, 1, 1, 0.0627451)
-emission_enabled = true
-emission = Color(7.31587e-06, 0.889366, 0.891586, 1)
-emission_energy_multiplier = 3.0
-
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_1cfl1"]
-material = SubResource("StandardMaterial3D_0pnmf")
+material = ExtResource("2_0h67l")
 radius = 0.75
 height = 2.4
 
@@ -265,7 +257,7 @@ offsets = PackedFloat32Array(0, 0.445122)
 colors = PackedColorArray(0.887083, 0.198749, 0.725666, 1, 0.447251, 1.3236e-07, 0.232379, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_v167e"]
-material = ExtResource("2_j64ux")
+material = ExtResource("6_76x3w")
 top_radius = 0.1
 bottom_radius = 0.1
 height = 0.4
@@ -281,7 +273,7 @@ size = Vector3(0.25, 0.55, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_14p2s"]
 emission_enabled = true
-emission = Color(0, 0.780392, 0, 1)
+emission = Color(0.168155, 0.718978, 0.802634, 1)
 emission_energy_multiplier = 4.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_2cy55"]
@@ -292,12 +284,14 @@ height = 0.2
 radial_segments = 8
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_565wh"]
+resource_local_to_scene = true
 albedo_color = Color(0.273873, 0.273873, 0.273873, 1)
 emission_enabled = true
 emission = Color(0.795262, 0.734058, 0.313715, 1)
 emission_energy_multiplier = 5.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_eox3j"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_565wh")
 radius = 0.15
 radial_segments = 8

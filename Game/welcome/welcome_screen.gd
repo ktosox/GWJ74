@@ -85,3 +85,9 @@ func _on_button_a_pressed() -> void:
 	key_change_mode = true
 	action_to_change = "button_A"
 	pass # Replace with function body.
+
+
+func _on_v_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(0,value)
+	$InputSetup/VSlider/AudioStreamPlayer.play()
+	pass # Replace with function body.

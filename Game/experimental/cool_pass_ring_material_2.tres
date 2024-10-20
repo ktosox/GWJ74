@@ -1,0 +1,5 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dg2inh4ujqifu"]
+
+[resource]
+depth_draw_mode = 2
+albedo_color = Color(0.593034, 0.510849, 0.124467, 1)

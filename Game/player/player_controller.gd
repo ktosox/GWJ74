@@ -24,7 +24,7 @@ var first_time_stop = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GM.connect("fuel_changed",Callable(self,"fuel_check"))
-
+	GM.connect("game_won",Callable(self,"turn_off"))
 	pass # Replace with function body.
 
 func _input(event: InputEvent) -> void:
@@ -34,6 +34,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("button_B") and ZA_WARUDO_ready:
 		stop_time()
 		pass
+func turn_off():
+	process_mode = Node.PROCESS_MODE_DISABLED
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:

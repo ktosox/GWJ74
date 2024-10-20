@@ -8,7 +8,7 @@ signal fuel_changed(new_fuel : int)
 
 signal activity_level_changed()
 
-
+signal game_won
 
 var starting_player_hp : int = 3
 
@@ -34,10 +34,11 @@ func report_player_damage() -> bool: #returns true on death
 
 func report_point_get(point = 1) -> void:
 	current_player_score += point
+	$Point.play()
 	emit_signal("score_changed",current_player_score)
 	
 	if current_player_score > score_break_points[0]:
-		print("win game")
+		win_game()
 		return
 	
 	if current_player_score > score_break_points[1]:
@@ -73,6 +74,14 @@ func end_game() -> void:
 	$Leaderboard.process_mode = Node.PROCESS_MODE_ALWAYS
 	$Leaderboard.visible = true
 	$Leaderboard.new_score()
+	pass
+
+func win_game():
+	emit_signal("game_won")
+	await get_tree().create_timer(2.3).timeout
+	get_tree().paused = true
+	await get_tree().create_timer(1.3).timeout
+	get_tree().change_scene_to_file("res://leaderboard/fake_leaderboard.tscn")
 	pass
 
 func start_game():

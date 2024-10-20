@@ -2,14 +2,10 @@
 
 [ext_resource type="Script" path="res://experimental/fuel.gd" id="1_bu1wp"]
 [ext_resource type="AudioStream" uid="uid://b1r8pqamgsqhx" path="res://resources/sounds/pick_up.ogg" id="2_2fb2y"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_if66q"]
-emission_enabled = true
-emission = Color(0.969355, 0.416781, 0.608086, 1)
-emission_energy_multiplier = 3.0
+[ext_resource type="Material" uid="uid://bmfcxjvlq6yk5" path="res://experimental/fuel_material.tres" id="2_sdeew"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_w4fts"]
-material = SubResource("StandardMaterial3D_if66q")
+material = ExtResource("2_sdeew")
 radial_segments = 8
 rings = 4
 
@@ -54,6 +50,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_8tthd"]
 resource_name = "get_collected"
@@ -67,7 +75,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.0]
+"values": [0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -149,6 +157,32 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimationPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"RESET", -1, 1.0, false],
+"method": &"play"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k6p7q"]
 _data = {
@@ -158,6 +192,7 @@ _data = {
 }
 
 [node name="Fuel" type="PathFollow3D"]
+visible = false
 script = ExtResource("1_bu1wp")
 
 [node name="Detector" type="Area3D" parent="."]
@@ -177,7 +212,6 @@ shape = SubResource("SphereShape3D_0b12c")
 libraries = {
 "": SubResource("AnimationLibrary_k6p7q")
 }
-autoplay = "go_forward"
 
 [node name="CollectSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_2fb2y")
