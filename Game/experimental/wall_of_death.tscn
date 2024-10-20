@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cbyg1rbre0yrd"]
+[gd_scene load_steps=17 format=3 uid="uid://cbyg1rbre0yrd"]
 
 [ext_resource type="Material" uid="uid://dqdn87nh3od0j" path="res://experimental/edge_material.tres" id="1_i8nun"]
 [ext_resource type="Script" path="res://experimental/wall_of_death.gd" id="1_sxest"]
+[ext_resource type="PackedScene" uid="uid://chaisqckmgrxb" path="res://experimental/ghost_effect.tscn" id="2_67hoy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rghjs"]
 render_priority = 1
@@ -15,6 +16,34 @@ distance_fade_max_distance = 6.0
 [sub_resource type="BoxMesh" id="BoxMesh_rn3yc"]
 material = SubResource("StandardMaterial3D_rghjs")
 size = Vector3(4, 8, 2)
+
+[sub_resource type="Gradient" id="Gradient_eek58"]
+offsets = PackedFloat32Array(0, 0.736842)
+colors = PackedColorArray(0, 1, 0, 1, 0.0687983, 0.0687983, 0.0687983, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l7kx1"]
+noise_type = 2
+frequency = 0.032
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0c0jx"]
+width = 64
+height = 64
+seamless = true
+seamless_blend_skirt = 0.708
+color_ramp = SubResource("Gradient_eek58")
+noise = SubResource("FastNoiseLite_l7kx1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bp6tg"]
+disable_ambient_light = true
+emission_enabled = true
+emission = Color(0, 0.0676811, 5.15932e-05, 1)
+emission_energy_multiplier = 10.0
+emission_texture = SubResource("NoiseTexture2D_0c0jx")
+
+[sub_resource type="BoxMesh" id="BoxMesh_a7i05"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_bp6tg")
+size = Vector3(0.485, 8.22, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_32sqn"]
 material = ExtResource("1_i8nun")
@@ -95,74 +124,8 @@ tracks/5/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_cj0kr"]
-resource_name = "left"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Detector/LeftCollision:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("LeftBody:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(3),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("WallAnimator")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(5),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"RESET", -1, 1.0, false],
-"method": &"play"
-}]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:progress_ratio")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Edge:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="Animation" id="Animation_s0s6f"]
-resource_name = "right"
+resource_name = "left"
 length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -227,11 +190,77 @@ tracks/4/keys = {
 "values": [0.0, 1.0]
 }
 
+[sub_resource type="Animation" id="Animation_cj0kr"]
+resource_name = "right"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Detector/LeftCollision:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftBody:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WallAnimator")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"RESET", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:progress_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Edge:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dhgcs"]
 _data = {
 "RESET": SubResource("Animation_qymgn"),
-"left": SubResource("Animation_cj0kr"),
-"right": SubResource("Animation_s0s6f")
+"left": SubResource("Animation_s0s6f"),
+"right": SubResource("Animation_cj0kr")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hnr72"]
@@ -244,6 +273,9 @@ script = ExtResource("1_sxest")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 visible = false
 mesh = SubResource("BoxMesh_rn3yc")
+
+[node name="GhostEffect" parent="." instance=ExtResource("2_67hoy")]
+mesh = SubResource("BoxMesh_a7i05")
 
 [node name="RightBody" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)

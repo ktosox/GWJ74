@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cqxedbhhrmr4s"]
+[gd_scene load_steps=34 format=3 uid="uid://cqxedbhhrmr4s"]
 
 [ext_resource type="PackedScene" uid="uid://cmfs7ntje0ay6" path="res://player/player_controller.tscn" id="1_10j6n"]
 [ext_resource type="Script" path="res://experimental/test_room_1.gd" id="1_acl2q"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dirg4204xw5sg" path="res://experimental/floor_texture.png" id="4_6fi8f"]
 [ext_resource type="Shader" path="res://experimental/screen_shader.gdshader" id="4_cbxow"]
 [ext_resource type="Script" path="res://experimental/overlay.gd" id="4_gysla"]
+[ext_resource type="PackedScene" uid="uid://dobkkp1k1heyr" path="res://experimental/box.tscn" id="4_koxog"]
 [ext_resource type="Theme" uid="uid://em0x4hcgcgxj" path="res://resources/fonts/basic_font.tres" id="4_q4k85"]
 [ext_resource type="AudioStream" uid="uid://bvqech1avcgd" path="res://resources/music/Prelude and Action.mp3" id="7_guidh"]
 [ext_resource type="Theme" uid="uid://7mmlar7dbofy" path="res://resources/fonts/welcome_font.tres" id="8_5a1m6"]
@@ -58,7 +59,7 @@ point_count = 2
 
 [sub_resource type="Curve3D" id="Curve3D_x1t1j"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 55),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 58),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -148,7 +149,8 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_v6bvn"]
 resource_name = "black_out"
-length = 1.8
+length = 9.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -156,10 +158,10 @@ tracks/0/path = NodePath("Overlay/BlackOut:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.766667, 1.03333, 1.36667, 1.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.0333334, 2.66667, 3.16667, 4.43333, 4.83333, 5.2, 5.46666, 5.8, 6.23333, 8.5, 8.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [true, false, true, false, true, false]
+"values": [false, true, false, true, false, true, false, true, false, true, false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -168,7 +170,7 @@ tracks/1/path = NodePath("Overlay/BlackOut/Label:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.9, 1.5),
+"times": PackedFloat32Array(4.43333, 5.33333, 5.93333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -182,7 +184,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_7w1nx"]
 resource_name = "chapter1"
-length = 8.0
+length = 12.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -190,29 +192,50 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(1.03333, 2.83333, 4.86667),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0.6, 2.43333, 3.46667, 5.03333, 5.73333, 7.33333, 8.93333, 10.4333, 11.3333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "values": [{
-"args": [3],
+"args": [4],
 "method": &"spawn_box"
 }, {
-"args": [3],
-"method": &"spawn_box"
+"args": [5],
+"method": &"spawn_fuel"
 }, {
 "args": [1],
+"method": &"spawn_box"
+}, {
+"args": [2],
+"method": &"spawn_box"
+}, {
+"args": [4],
+"method": &"spawn_box"
+}, {
+"args": [0],
+"method": &"spawn_box"
+}, {
+"args": [4],
+"method": &"spawn_box"
+}, {
+"args": [3],
 "method": &"spawn_fuel"
+}, {
+"args": [1],
+"method": &"spawn_box"
 }]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CenterMiddle/WallOfDeath")
+tracks/1/path = NodePath("CenterMiddle/WallOfDeath1")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.5, 7),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(1.23333, 6.8, 11.9),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
+"args": ["left"],
+"method": &"play_animation"
+}, {
 "args": ["left"],
 "method": &"play_animation"
 }, {
@@ -220,10 +243,35 @@ tracks/1/keys = {
 "method": &"play_animation"
 }]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CenterMiddle/WallOfDeath2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3.9, 10.7),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["right"],
+"method": &"play_animation"
+}, {
+"args": ["left"],
+"method": &"play_animation"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l4vef"]
 _data = {
 "chapter1": SubResource("Animation_7w1nx")
+}
+
+[sub_resource type="Animation" id="Animation_62gqd"]
+resource_name = "new_animation"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yb3wb"]
+_data = {
+"new_animation": SubResource("Animation_62gqd")
 }
 
 [node name="TestRoom1" type="Node3D"]
@@ -332,7 +380,10 @@ mesh = SubResource("CylinderMesh_8yqai")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
 curve = SubResource("Curve3D_obuo1")
 
-[node name="WallOfDeath" parent="CenterMiddle" instance=ExtResource("3_3wmx7")]
+[node name="WallOfDeath1" parent="CenterMiddle" instance=ExtResource("3_3wmx7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="WallOfDeath2" parent="CenterMiddle" instance=ExtResource("3_3wmx7")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Spawner" type="Node3D" parent="."]
@@ -341,6 +392,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
 [node name="TopRight" type="Path3D" parent="Spawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
 curve = SubResource("Curve3D_x1t1j")
+
+[node name="Box2" parent="Spawner/TopRight" instance=ExtResource("4_koxog")]
+transform = Transform3D(-0.4, 0, -3.49691e-08, 0, 0.4, 0, 3.49691e-08, 0, -0.4, 0, 0, 0)
+
+[node name="Box3" parent="Spawner/TopRight" instance=ExtResource("4_koxog")]
+transform = Transform3D(-0.4, 0, -3.49691e-08, 0, 0.4, 0, 3.49691e-08, 0, -0.4, 0, 0, 0)
+
+[node name="Box4" parent="Spawner/TopRight" instance=ExtResource("4_koxog")]
+transform = Transform3D(-0.4, 0, -3.49691e-08, 0, 0.4, 0, 3.49691e-08, 0, -0.4, 0, 0, 0)
+
+[node name="Box5" parent="Spawner/TopRight" instance=ExtResource("4_koxog")]
+transform = Transform3D(-0.4, 0, -3.49691e-08, 0, 0.4, 0, 3.49691e-08, 0, -0.4, 0, 0, 0)
+
+[node name="Box" parent="Spawner/TopRight" instance=ExtResource("4_koxog")]
+transform = Transform3D(-0.4, 0, -3.49691e-08, 0, 0.4, 0, 3.49691e-08, 0, -0.4, 0, 0, 0)
 
 [node name="TopLeft" type="Path3D" parent="Spawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
@@ -564,6 +630,11 @@ libraries = {
 "": SubResource("AnimationLibrary_l4vef")
 }
 autoplay = "chapter1"
+
+[node name="MoveStuff" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_yb3wb")
+}
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Overlay/StartSetFuel" to="Overlay" method="_on_start_set_fuel_timeout"]

@@ -6,6 +6,7 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_if66q"]
 emission_enabled = true
 emission = Color(0.969355, 0.416781, 0.608086, 1)
+emission_energy_multiplier = 3.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_w4fts"]
 material = SubResource("StandardMaterial3D_if66q")

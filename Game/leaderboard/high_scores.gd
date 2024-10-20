@@ -51,7 +51,14 @@ func create_empty_score(points : int) -> Node:
 	var new_score = score_scene.instantiate()
 	new_score.score = points
 	new_score.cool_name = ""
-	insert_score(new_score,1)
+	var index = 1
+	for score_scene in $LayoutLeft.get_children():
+		if score_scene.score > points:
+			index += 1
+	for score_scene in $LayoutRight.get_children():
+		if score_scene.score > points:
+			index += 1
+	insert_score(new_score,index)
 	last_score = new_score
 	return new_score
 	pass

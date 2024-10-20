@@ -6,6 +6,8 @@ func play_animation(animation : String):
 	$WallAnimator.play(animation)
 	pass
 
+func spook(poses : bool) -> void:
+	$GhostEffect.visible = poses
 
 func _on_detector_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):

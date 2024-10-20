@@ -21,15 +21,20 @@ offset_bottom = 181.0
 
 [node name="Score" parent="LayoutLeft" instance=ExtResource("1_mugo3")]
 layout_mode = 2
+score = 26
 
 [node name="Score2" parent="LayoutLeft" instance=ExtResource("1_mugo3")]
 layout_mode = 2
+score = 18
 
 [node name="Score3" parent="LayoutLeft" instance=ExtResource("1_mugo3")]
 layout_mode = 2
+score = 12
 
 [node name="Score4" parent="LayoutLeft" instance=ExtResource("1_mugo3")]
 layout_mode = 2
+score = 8
+cool_name = "XBOBX"
 
 [node name="LayoutRight" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(280, 0)
@@ -41,12 +46,20 @@ offset_bottom = 181.0
 
 [node name="Score5" parent="LayoutRight" instance=ExtResource("1_mugo3")]
 layout_mode = 2
+score = 6
+cool_name = "JESSY"
 
 [node name="Score6" parent="LayoutRight" instance=ExtResource("1_mugo3")]
 layout_mode = 2
+score = 3
+cool_name = "FRANK"
 
 [node name="Score7" parent="LayoutRight" instance=ExtResource("1_mugo3")]
 layout_mode = 2
+score = 0
+cool_name = "-----"
 
 [node name="Score8" parent="LayoutRight" instance=ExtResource("1_mugo3")]
 layout_mode = 2
+score = 0
+cool_name = "-----"

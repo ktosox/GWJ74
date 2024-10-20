@@ -25,6 +25,7 @@ func set_score(score : int) -> void:
 	if score < 10:
 		text_score = "0" + str(score)
 	$Score.text = text_score +'-'
+	self.score = score
 	pass
 
 func add_letter(letter : String) -> void:

@@ -6,15 +6,21 @@ signal health_changed(new_health : int)
 
 signal fuel_changed(new_fuel : int)
 
-var starting_player_hp : int = 10
+signal activity_level_changed()
 
-var starting_player_fuel : int = 6
+var starting_player_hp : int = 3
+
+var starting_player_fuel : int = 7
 
 @export var current_player_hp : int
 
 @export var current_player_score : int
 
 @export var current_player_fuel : int
+
+var score_break_points = [26,18,12]
+
+var current_activity_level = 0
 
 func report_player_damage() -> bool: #returns true on death
 	current_player_hp -= 1
@@ -24,17 +30,33 @@ func report_player_damage() -> bool: #returns true on death
 	return false
 	pass
 
-func report_point_get() -> void:
-	current_player_score += 1
+func report_point_get(point = 1) -> void:
+	current_player_score += point
 	emit_signal("score_changed",current_player_score)
+	
+	if current_player_score > score_break_points[0]:
+		print("win game")
+		return
+	
+	if current_player_score > score_break_points[1]:
+		if current_activity_level < 2:
+			current_activity_level = 2
+			emit_signal("activity_level_changed")
+			return 
+	if current_player_score > score_break_points[2]:
+		if current_activity_level < 1:
+			current_activity_level = 1
+			emit_signal("activity_level_changed")
+			return
 
 func reset_player_values() -> void:
 	current_player_hp = starting_player_hp
 	current_player_score = 0
 	current_player_fuel = starting_player_fuel
+	current_activity_level = 0
 	
 func report_fuel_collected():
-	current_player_fuel += 5
+	current_player_fuel += 4
 	emit_signal("fuel_changed",current_player_fuel)
 
 	pass
