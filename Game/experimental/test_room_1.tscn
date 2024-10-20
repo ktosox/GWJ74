@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cqxedbhhrmr4s"]
+[gd_scene load_steps=31 format=3 uid="uid://cqxedbhhrmr4s"]
 
 [ext_resource type="PackedScene" uid="uid://cmfs7ntje0ay6" path="res://player/player_controller.tscn" id="1_10j6n"]
 [ext_resource type="Script" path="res://experimental/test_room_1.gd" id="1_acl2q"]
@@ -12,20 +12,6 @@
 [ext_resource type="Theme" uid="uid://7mmlar7dbofy" path="res://resources/fonts/welcome_font.tres" id="8_5a1m6"]
 [ext_resource type="FontFile" uid="uid://chpylqhq4ka8d" path="res://resources/fonts/HydratingLip.ttf" id="9_nu7yr"]
 
-[sub_resource type="Environment" id="Environment_odgyf"]
-background_mode = 1
-background_color = Color(0.147021, 0.12945, 0.385116, 1)
-background_energy_multiplier = 0.25
-ambient_light_source = 2
-ambient_light_color = Color(0.775063, 0.775063, 0.775063, 1)
-ambient_light_energy = 3.0
-tonemap_exposure = 0.2
-glow_enabled = true
-glow_intensity = 1.5
-glow_strength = 0.61
-glow_bloom = 0.4
-glow_blend_mode = 0
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_tk620"]
 size = Vector3(6, 1, 1)
 
@@ -37,18 +23,6 @@ size = Vector3(1, 8, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ml0yo"]
 size = Vector3(1, 8, 0.5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hu7bl"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_8yqai"]
-material = SubResource("StandardMaterial3D_hu7bl")
-top_radius = 0.1
-bottom_radius = 0.02
-height = 1.4
-radial_segments = 8
-rings = 8
-cap_top = false
-cap_bottom = false
 
 [sub_resource type="Curve3D" id="Curve3D_obuo1"]
 _data = {
@@ -277,11 +251,8 @@ _data = {
 [node name="TestRoom1" type="Node3D"]
 script = ExtResource("1_acl2q")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_odgyf")
-
 [node name="PlayerController" parent="." instance=ExtResource("1_10j6n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.358, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
@@ -293,7 +264,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
 shape = SubResource("BoxShape3D_tk620")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/CollisionShape3D"]
@@ -314,67 +285,11 @@ shape = SubResource("BoxShape3D_cpkfg")
 mesh = SubResource("BoxMesh_ml0yo")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 shape = SubResource("BoxShape3D_tk620")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Walls/CollisionShape3D2"]
 mesh = SubResource("BoxMesh_0cqjv")
-
-[node name="Line" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3, 0, 0.5)
-mesh = SubResource("CylinderMesh_8yqai")
-
-[node name="Line2" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3, -4, 0.5)
-mesh = SubResource("CylinderMesh_8yqai")
-
-[node name="Line4" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3, -2, 0.5)
-mesh = SubResource("CylinderMesh_8yqai")
-
-[node name="Line3" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3, 2, 0.5)
-mesh = SubResource("CylinderMesh_8yqai")
-
-[node name="Line12" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, 0, 0.5)
-mesh = SubResource("CylinderMesh_8yqai")
-
-[node name="Line13" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, -2, 0.5)
-mesh = SubResource("CylinderMesh_8yqai")
-
-[node name="Line14" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, 2, 0.5)
-mesh = SubResource("CylinderMesh_8yqai")
-
-[node name="Line5" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3, 4, 0.5)
-mesh = SubResource("CylinderMesh_8yqai")
-
-[node name="Line6" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1, 4, 0.5)
-mesh = SubResource("CylinderMesh_8yqai")
-
-[node name="Line7" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1, 4, 0.5)
-mesh = SubResource("CylinderMesh_8yqai")
-
-[node name="Line8" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, 4, 0.5)
-mesh = SubResource("CylinderMesh_8yqai")
-
-[node name="Line9" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1, -4, 0.5)
-mesh = SubResource("CylinderMesh_8yqai")
-
-[node name="Line10" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1, -4, 0.5)
-mesh = SubResource("CylinderMesh_8yqai")
-
-[node name="Line11" type="MeshInstance3D" parent="Walls"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, -4, 0.5)
-mesh = SubResource("CylinderMesh_8yqai")
 
 [node name="CenterMiddle" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
@@ -390,7 +305,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
 
 [node name="TopRight" type="Path3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 0)
 curve = SubResource("Curve3D_x1t1j")
 
 [node name="Box2" parent="Spawner/TopRight" instance=ExtResource("4_koxog")]
@@ -409,7 +324,7 @@ transform = Transform3D(-0.4, 0, -3.49691e-08, 0, 0.4, 0, 3.49691e-08, 0, -0.4, 
 transform = Transform3D(-0.4, 0, -3.49691e-08, 0, 0.4, 0, 3.49691e-08, 0, -0.4, 0, 0, 0)
 
 [node name="TopLeft" type="Path3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 0)
 curve = SubResource("Curve3D_x1t1j")
 
 [node name="TopMiddle" type="Path3D" parent="Spawner"]
@@ -421,11 +336,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 curve = SubResource("Curve3D_x1t1j")
 
 [node name="BotRight" type="Path3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1.5, 0)
 curve = SubResource("Curve3D_x1t1j")
 
 [node name="BotLeft" type="Path3D" parent="Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1.5, 0)
 curve = SubResource("Curve3D_x1t1j")
 
 [node name="Timer" type="Timer" parent="."]

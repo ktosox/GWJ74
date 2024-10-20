@@ -58,11 +58,15 @@ func _physics_process(delta: float) -> void:
 func stop_time() -> void: #ZA WARUDO!
 	print("stoping time")
 	ZA_WARUDO_ready = false
+	$WorldEnvironment.environment.background_energy_multiplier = 0.1
+	$WorldEnvironment.environment.tonemap_exposure = 0.05
 	time_orb_material.emission_energy_multiplier = 100
 	get_tree().paused = true
 	$ZA_WARUDO_Cooldown.start()
 	await get_tree().create_timer(2).timeout
 	get_tree().paused = false
+	$WorldEnvironment.environment.background_energy_multiplier = 0.25
+	$WorldEnvironment.environment.tonemap_exposure = 0.2
 	time_orb_material.emission_energy_multiplier = 0
 	pass
 

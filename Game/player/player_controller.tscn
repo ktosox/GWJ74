@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cmfs7ntje0ay6"]
+[gd_scene load_steps=32 format=3 uid="uid://cmfs7ntje0ay6"]
 
 [ext_resource type="Script" path="res://player/player_controller.gd" id="1_ugusn"]
 [ext_resource type="Material" uid="uid://1jtvmxwejayf" path="res://player/player_material2.tres" id="2_j64ux"]
@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://ddcvioi3kbny" path="res://resources/sounds/wow.ogg" id="5_wi5cj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4lo5v"]
-radius = 0.6
+radius = 0.8
 height = 2.2
 
 [sub_resource type="Animation" id="Animation_m3pxj"]
@@ -303,6 +303,20 @@ radius = 0.15
 radial_segments = 8
 rings = 4
 
+[sub_resource type="Environment" id="Environment_odgyf"]
+background_mode = 1
+background_color = Color(0.147021, 0.12945, 0.385116, 1)
+background_energy_multiplier = 0.25
+ambient_light_source = 2
+ambient_light_color = Color(0.775063, 0.775063, 0.775063, 1)
+ambient_light_energy = 3.0
+tonemap_exposure = 0.2
+glow_enabled = true
+glow_intensity = 1.5
+glow_strength = 0.61
+glow_bloom = 0.4
+glow_blend_mode = 0
+
 [node name="PlayerController" type="CharacterBody3D" groups=["player"]]
 process_mode = 3
 collision_layer = 2
@@ -455,6 +469,9 @@ skeleton = NodePath("../..")
 [node name="FuelUseTimer" type="Timer" parent="."]
 wait_time = 2.5
 autostart = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_odgyf")
 
 [connection signal="timeout" from="GunCooldown" to="." method="_on_gun_cooldown_timeout"]
 [connection signal="timeout" from="ZA_WARUDO_Cooldown" to="." method="_on_za_warudo_cooldown_timeout"]

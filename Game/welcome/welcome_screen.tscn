@@ -142,30 +142,30 @@ uppercase = true
 
 [node name="Label4" type="Label" parent="InputSetup"]
 layout_mode = 0
-offset_left = 189.0
-offset_top = 61.0
-offset_right = 237.0
-offset_bottom = 85.0
+offset_left = 204.0
+offset_top = 72.0
+offset_right = 252.0
+offset_bottom = 96.0
 theme = ExtResource("1_jl3sd")
 text = "->"
 uppercase = true
 
 [node name="Label5" type="Label" parent="InputSetup"]
 layout_mode = 0
-offset_left = 58.0
-offset_top = 58.0
-offset_right = 106.0
-offset_bottom = 82.0
+offset_left = 59.0
+offset_top = 76.0
+offset_right = 107.0
+offset_bottom = 100.0
 theme = ExtResource("1_jl3sd")
 text = "<-"
 uppercase = true
 
 [node name="Label6" type="Label" parent="InputSetup"]
 layout_mode = 0
-offset_left = 68.0
-offset_top = 217.0
-offset_right = 116.0
-offset_bottom = 241.0
+offset_left = 69.0
+offset_top = 230.0
+offset_right = 117.0
+offset_bottom = 254.0
 rotation = 4.71239
 theme = ExtResource("1_jl3sd")
 text = "->"
@@ -173,10 +173,10 @@ uppercase = true
 
 [node name="Label7" type="Label" parent="InputSetup"]
 layout_mode = 0
-offset_left = 225.0
-offset_top = 168.0
-offset_right = 273.0
-offset_bottom = 192.0
+offset_left = 243.0
+offset_top = 181.0
+offset_right = 291.0
+offset_bottom = 205.0
 rotation = 1.5708
 theme = ExtResource("1_jl3sd")
 text = "->"
@@ -204,57 +204,63 @@ uppercase = true
 
 [node name="Left" type="Button" parent="InputSetup"]
 layout_mode = 0
-offset_left = 35.0
+offset_left = 23.0
 offset_top = 103.0
-offset_right = 127.0
+offset_right = 150.0
 offset_bottom = 143.0
 theme = SubResource("Theme_txnar")
 text = "A"
+text_overrun_behavior = 4
 
 [node name="Up" type="Button" parent="InputSetup"]
 layout_mode = 0
-offset_left = 37.0
-offset_top = 231.0
-offset_right = 129.0
-offset_bottom = 271.0
+offset_left = 25.0
+offset_top = 234.0
+offset_right = 138.0
+offset_bottom = 274.0
 theme = SubResource("Theme_txnar")
 text = "W"
+text_overrun_behavior = 4
 
 [node name="Down" type="Button" parent="InputSetup"]
 layout_mode = 0
 offset_left = 178.0
 offset_top = 233.0
-offset_right = 270.0
+offset_right = 309.0
 offset_bottom = 273.0
 theme = SubResource("Theme_txnar")
 text = "S"
+text_overrun_behavior = 4
 
 [node name="ButtonB" type="Button" parent="InputSetup"]
 layout_mode = 0
-offset_left = 361.0
-offset_top = 235.0
-offset_right = 529.0
-offset_bottom = 275.0
+offset_left = 354.0
+offset_top = 234.0
+offset_right = 535.0
+offset_bottom = 274.0
 theme = SubResource("Theme_txnar")
-text = "SHIFT"
+text = "Shift"
+text_overrun_behavior = 4
 
 [node name="Right" type="Button" parent="InputSetup"]
 layout_mode = 0
 offset_left = 174.0
 offset_top = 101.0
-offset_right = 266.0
+offset_right = 312.0
 offset_bottom = 141.0
 theme = SubResource("Theme_txnar")
 text = "D"
+text_overrun_behavior = 4
 
 [node name="ButtonA" type="Button" parent="InputSetup"]
 layout_mode = 0
 offset_left = 355.0
 offset_top = 102.0
-offset_right = 523.0
+offset_right = 534.0
 offset_bottom = 142.0
 theme = SubResource("Theme_txnar")
-text = "SPACE"
+text = "Space"
+text_overrun_behavior = 4
 
 [node name="MouseBlocker" type="Control" parent="InputSetup"]
 visible = false
