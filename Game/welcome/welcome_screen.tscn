@@ -285,6 +285,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VSlider" type="VSlider" parent="InputSetup"]
+layout_mode = 0
 offset_left = 526.0
 offset_top = 349.0
 offset_right = 542.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b6owbtl7ldnc5"]
+[gd_scene load_steps=12 format=3 uid="uid://b6owbtl7ldnc5"]
 
 [ext_resource type="Script" path="res://leaderboard/leaderboard.gd" id="1_0r3na"]
 [ext_resource type="PackedScene" uid="uid://dfp8hqfluengq" path="res://leaderboard/high_scores.tscn" id="2_vf3nu"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b1sqmxngckw8a" path="res://leaderboard/keyboard.tscn" id="3_u3dyj"]
 [ext_resource type="Shader" path="res://experimental/screen_shader.gdshader" id="4_0mumn"]
 [ext_resource type="AudioStream" uid="uid://cfg338q3tfbhm" path="res://resources/sounds/creepy_sound.ogg" id="6_6phfi"]
+[ext_resource type="FontFile" uid="uid://chpylqhq4ka8d" path="res://resources/fonts/HydratingLip.ttf" id="6_57qej"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fjkrr"]
 shader = ExtResource("4_0mumn")
@@ -13,6 +14,21 @@ shader_parameter/scanline_count = 200.0
 shader_parameter/color_offset = Vector3(0.75, 0, -0.68)
 shader_parameter/x_scale_rate = 0.6
 shader_parameter/zoom_in = 1.12
+
+[sub_resource type="Animation" id="Animation_pxfqq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_s2m1i"]
 resource_name = "new_animation"
@@ -28,21 +44,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
-}
-
-[sub_resource type="Animation" id="Animation_pxfqq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wc1dl"]
@@ -123,6 +124,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 239.0
+offset_right = 431.0
+offset_bottom = 650.0
+theme_override_colors/font_outline_color = Color(0, 0, 0.901961, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_57qej")
+theme_override_font_sizes/font_size = 128
+text = "GET
+OUT"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_6phfi")

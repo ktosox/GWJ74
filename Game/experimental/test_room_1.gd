@@ -87,6 +87,7 @@ func _on_levels_animation_finished(anim_name: StringName) -> void:
 			$Levels.play("chapter2")
 		else:
 			$Levels.play("chapter3")
+			$SpookyStuff.play("black_out")
 	if anim_name == "chapter2":
 		$Levels.play("chapter3")
 	if anim_name == "chapter3":

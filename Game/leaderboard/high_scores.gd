@@ -48,7 +48,8 @@ func insert_score(score: Control, index : int) -> void:
 	pass
 
 func create_empty_score(points : int) -> Node:
-	if points <= $LayoutRight/Score8.score:
+	if points <= $LayoutRight.get_children()[3].score:
+		print("no place skip")
 		await  get_tree().create_timer(2).timeout
 		GM.welcome_screen()
 	var new_score = score_scene.instantiate()
