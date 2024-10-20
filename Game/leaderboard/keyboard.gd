@@ -44,6 +44,8 @@ func select_character(character : Control) -> void:
 	selected_character = character
 
 func move_selector() -> void:
+	if !visible:
+		return
 	if Input.is_action_pressed("left"):
 		if selected_character.position.x == 0:
 			return

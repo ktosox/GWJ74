@@ -1,11 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://dns65haxfv0ch"]
+[gd_scene load_steps=5 format=3 uid="uid://dns65haxfv0ch"]
 
 [ext_resource type="Script" path="res://game_manager.gd" id="1_sbtrl"]
+[ext_resource type="PackedScene" uid="uid://nmnnn7onxbg0" path="res://leaderboard/leaderboard.tscn" id="2_7ttn3"]
 [ext_resource type="AudioStream" uid="uid://va072lobrv6j" path="res://resources/sounds/engine_start.ogg" id="2_fi3sc"]
+[ext_resource type="PackedScene" uid="uid://ca7bhjj8migcc" path="res://welcome/welcome_screen.tscn" id="2_wm2fd"]
 
 [node name="GameManager" type="Node"]
 process_mode = 3
 script = ExtResource("1_sbtrl")
+
+[node name="WelcomeScreen" parent="." instance=ExtResource("2_wm2fd")]
+
+[node name="Leaderboard" parent="." instance=ExtResource("2_7ttn3")]
+visible = false
 
 [node name="StartGameSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_fi3sc")

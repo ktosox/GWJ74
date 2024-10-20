@@ -7,13 +7,22 @@ extends Node3D
 @onready var boxes = [$Spawner/TopRight/Box,$Spawner/TopRight/Box2,$Spawner/TopRight/Box3,$Spawner/TopRight/Box4,$Spawner/TopRight/Box5]
 
 var left_or_right = ["left","right","left","right"]
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GM.reset_player_values()
+	
 	GM.connect("activity_level_changed",Callable(self,"update_activity_level"))
 	pass # Replace with function body.
 
-
+func start_game():
+	# add player
+	# start sound
+	var player = load("res://player/player_controller.tscn").instantiate()
+	player.transform.origin = $PlayerSpawnPoint.transform.origin
+	add_child(player)
+	$Music.play()
+	pass
 
 func update_activity_level(level : int):
 	
@@ -40,6 +49,7 @@ func spawn_fuel(lane = -1):
 	#var random_lane = $Spawner.get_children()[lane]
 	#random_lane.add_child(new_fuel)
 	pass
+
 
 
 func _on_timer_timeout() -> void:

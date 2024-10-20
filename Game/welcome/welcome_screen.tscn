@@ -46,6 +46,8 @@ Button/font_sizes/font_size = 20
 Button/fonts/font = ExtResource("3_8asto")
 
 [node name="WelcomeScreen" type="CanvasLayer"]
+process_mode = 3
+layer = 3
 script = ExtResource("1_rlqjn")
 
 [node name="Intro" type="AnimationPlayer" parent="."]

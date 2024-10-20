@@ -8,6 +8,8 @@ signal fuel_changed(new_fuel : int)
 
 signal activity_level_changed()
 
+
+
 var starting_player_hp : int = 3
 
 var starting_player_fuel : int = 7
@@ -68,17 +70,33 @@ func report_fuel_use():
 	pass
 
 func end_game() -> void:
-	get_tree().change_scene_to_file("res://leaderboard/leaderboard.tscn")
-	get_tree().paused = false
+	$Leaderboard.process_mode = Node.PROCESS_MODE_ALWAYS
+	$Leaderboard.visible = true
+	$Leaderboard.new_score()
 	pass
 
 func start_game():
 	$StartGameSound.play()
-	await get_tree().create_timer(0.8).timeout
+	reset_player_values()
+	$WelcomeScreen.visible = false
+	$WelcomeScreen.process_mode = Node.PROCESS_MODE_DISABLED
+	$Leaderboard.visible = false
+	$Leaderboard.turn_off()
 	get_tree().change_scene_to_file("res://experimental/test_room_1.tscn")
+	await get_tree().create_timer(0.8).timeout
+	get_tree().paused = false
+	
+	get_tree().current_scene.process_mode = Node.PROCESS_MODE_PAUSABLE
+	get_tree().current_scene.start_game()
+	
 	pass
 
 func welcome_screen():
-	get_tree().change_scene_to_file("res://welcome/welcome_screen.tscn")
-	get_tree().paused = false
+	$Leaderboard.visible = false
+	$Leaderboard.turn_off()
+	$Leaderboard.process_mode = Node.PROCESS_MODE_DISABLED
+	$WelcomeScreen.process_mode = Node.PROCESS_MODE_ALWAYS
+	$WelcomeScreen.visible = true
+
+
 	pass

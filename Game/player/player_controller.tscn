@@ -340,7 +340,7 @@ libraries = {
 [node name="GunCooldown" type="Timer" parent="."]
 
 [node name="GunOutput" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.149502, -0.0788883)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.119684, -0.0788883)
 
 [node name="Shields" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.00186746, 0.999998, 0, -0.999998, -0.00186746, 0, 0, 0)

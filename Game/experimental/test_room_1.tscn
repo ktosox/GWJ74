@@ -1,6 +1,5 @@
-[gd_scene load_steps=31 format=3 uid="uid://cqxedbhhrmr4s"]
+[gd_scene load_steps=30 format=3 uid="uid://cqxedbhhrmr4s"]
 
-[ext_resource type="PackedScene" uid="uid://cmfs7ntje0ay6" path="res://player/player_controller.tscn" id="1_10j6n"]
 [ext_resource type="Script" path="res://experimental/test_room_1.gd" id="1_acl2q"]
 [ext_resource type="PackedScene" uid="uid://cbyg1rbre0yrd" path="res://experimental/wall_of_death.tscn" id="3_3wmx7"]
 [ext_resource type="Texture2D" uid="uid://dirg4204xw5sg" path="res://experimental/floor_texture.png" id="4_6fi8f"]
@@ -249,10 +248,8 @@ _data = {
 }
 
 [node name="TestRoom1" type="Node3D"]
+process_mode = 4
 script = ExtResource("1_acl2q")
-
-[node name="PlayerController" parent="." instance=ExtResource("1_10j6n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
@@ -526,7 +523,6 @@ autostart = true
 
 [node name="Music" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("7_guidh")
-autoplay = true
 bus = &"Music"
 
 [node name="Intro" type="AnimationPlayer" parent="."]
@@ -550,6 +546,9 @@ autoplay = "chapter1"
 libraries = {
 "": SubResource("AnimationLibrary_yb3wb")
 }
+
+[node name="PlayerSpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Overlay/StartSetFuel" to="Overlay" method="_on_start_set_fuel_timeout"]

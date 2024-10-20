@@ -13,7 +13,17 @@ shader_parameter/x_scale_rate = 0.6
 shader_parameter/zoom_in = 1.12
 
 [node name="Leaderboard" type="CanvasLayer"]
+process_mode = 4
+layer = 2
 script = ExtResource("1_qsv21")
+
+[node name="Back" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.351563, 0.351563, 0.351563, 1)
 
 [node name="HighScores" parent="." instance=ExtResource("2_uxsp0")]
 offset_left = 5.0
@@ -22,6 +32,7 @@ offset_right = -1.0
 offset_bottom = 346.0
 
 [node name="Keyboard" parent="." instance=ExtResource("1_mfhsa")]
+block_input = true
 
 [node name="Shader" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_fjkrr")

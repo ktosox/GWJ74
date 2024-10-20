@@ -117,6 +117,7 @@ func fuel_check(fuel_left) -> void:
 
 
 func end_game() -> void:
+	queue_free()
 	GM.end_game()
 	pass
 
