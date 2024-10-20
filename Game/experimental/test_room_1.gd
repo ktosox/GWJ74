@@ -14,17 +14,22 @@ func _ready() -> void:
 
 
 
-func spawn_box():
+func spawn_box(lane = -1):
 	var new_box = box_scene.instantiate()
-	var random_lane = $Spawner.get_children()[randi()%$Spawner.get_child_count()]
+	if lane == -1:
+		lane = randi()%$Spawner.get_child_count()
+	var random_lane = $Spawner.get_children()[lane]
 	random_lane.add_child(new_box)
 	pass
 
-func spawn_fuel():
+func spawn_fuel(lane = -1):
 	var new_fuel = fuel_scene.instantiate()
-	var random_lane = $Spawner.get_children()[randi()%$Spawner.get_child_count()]
+	if lane == -1:
+		lane = randi()%$Spawner.get_child_count()
+	var random_lane = $Spawner.get_children()[lane]
 	random_lane.add_child(new_fuel)
 	pass
+
 
 func _on_timer_timeout() -> void:
 	var ring_scene = preload("res://experimental/cool_pass_ring.tscn")

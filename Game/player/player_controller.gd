@@ -99,6 +99,9 @@ func fuel_check(fuel_left) -> void:
 	$ShipBody/TubeLeft/CPUParticles3D2.emitting = false
 	$FuelUseTimer.stop()
 	can_be_hit = false
+	gun_ready = false
+	get_tree().paused = true
+	ZA_WARUDO_ready = false
 	var fall_tween = create_tween()
 	fall_tween.tween_property(self,"transform:origin:y",-3.5,2)
 	fall_tween.play()

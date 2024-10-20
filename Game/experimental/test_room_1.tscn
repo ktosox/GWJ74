@@ -49,73 +49,19 @@ rings = 8
 cap_top = false
 cap_bottom = false
 
+[sub_resource type="Curve3D" id="Curve3D_obuo1"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 65),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
 [sub_resource type="Curve3D" id="Curve3D_x1t1j"]
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 55),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
-
-[sub_resource type="Animation" id="Animation_5c1yh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_oaxg1"]
-resource_name = "new_animation"
-length = 14.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 5, 7, 12),
-"transitions": PackedFloat32Array(1, 0, 1, 0),
-"update": 0,
-"values": [0.0, 1.0, 0.0, 1.0]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("WallOfDeath/WallAnimator")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 5, 7, 12),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"values": [{
-"args": [&"left", -1, 1.0, false],
-"method": &"play"
-}, {
-"args": [&"RESET", -1, 1.0, false],
-"method": &"play"
-}, {
-"args": [&"right", -1, 1.0, false],
-"method": &"play"
-}, {
-"args": [&"RESET", -1, 1.0, false],
-"method": &"play"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2crw4"]
-_data = {
-"RESET": SubResource("Animation_5c1yh"),
-"new_animation": SubResource("Animation_oaxg1")
-}
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ev5k"]
 render_priority = 1
@@ -234,6 +180,52 @@ _data = {
 "black_out": SubResource("Animation_v6bvn")
 }
 
+[sub_resource type="Animation" id="Animation_7w1nx"]
+resource_name = "chapter1"
+length = 8.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.03333, 2.83333, 4.86667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [3],
+"method": &"spawn_box"
+}, {
+"args": [3],
+"method": &"spawn_box"
+}, {
+"args": [1],
+"method": &"spawn_fuel"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CenterMiddle/WallOfDeath")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5, 7),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["left"],
+"method": &"play_animation"
+}, {
+"args": ["right"],
+"method": &"play_animation"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l4vef"]
+_data = {
+"chapter1": SubResource("Animation_7w1nx")
+}
+
 [node name="TestRoom1" type="Node3D"]
 script = ExtResource("1_acl2q")
 
@@ -337,20 +329,11 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, -4,
 mesh = SubResource("CylinderMesh_8yqai")
 
 [node name="CenterMiddle" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
-curve = SubResource("Curve3D_x1t1j")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -60)
+curve = SubResource("Curve3D_obuo1")
 
-[node name="WallMover" type="PathFollow3D" parent="CenterMiddle"]
+[node name="WallOfDeath" parent="CenterMiddle" instance=ExtResource("3_3wmx7")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-
-[node name="WallOfDeath" parent="CenterMiddle/WallMover" instance=ExtResource("3_3wmx7")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CenterMiddle/WallMover"]
-libraries = {
-"": SubResource("AnimationLibrary_2crw4")
-}
-autoplay = "new_animation"
 
 [node name="Spawner" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
@@ -576,7 +559,11 @@ libraries = {
 "": SubResource("AnimationLibrary_6qblr")
 }
 
+[node name="Levels" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l4vef")
+}
+autoplay = "chapter1"
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Overlay/StartSetFuel" to="Overlay" method="_on_start_set_fuel_timeout"]
-
-[editable path="CenterMiddle/WallMover/WallOfDeath"]
