@@ -97,15 +97,15 @@ uppercase = true
 
 [node name="Label2" type="Label" parent="InputSetup"]
 layout_mode = 0
-offset_left = 46.0
-offset_top = 647.0
-offset_right = 550.0
-offset_bottom = 779.0
+offset_left = 37.0
+offset_top = 646.0
+offset_right = 565.0
+offset_bottom = 778.0
 theme = ExtResource("1_jl3sd")
 text = "enter the code below 
 to start the game
 
- -> -> B <- A"
+ -> -> FREEZE <- SHOOT"
 uppercase = true
 
 [node name="Label8" type="Label" parent="InputSetup"]
@@ -197,22 +197,22 @@ uppercase = true
 
 [node name="Label12" type="Label" parent="InputSetup"]
 layout_mode = 0
-offset_left = 354.0
-offset_top = 61.0
-offset_right = 546.0
-offset_bottom = 85.0
+offset_left = 381.0
+offset_top = 67.0
+offset_right = 573.0
+offset_bottom = 91.0
 theme = ExtResource("1_jl3sd")
-text = "button a"
+text = "SHOOT"
 uppercase = true
 
 [node name="Label13" type="Label" parent="InputSetup"]
 layout_mode = 0
-offset_left = 354.0
-offset_top = 185.0
-offset_right = 546.0
-offset_bottom = 209.0
+offset_left = 367.0
+offset_top = 195.0
+offset_right = 559.0
+offset_bottom = 219.0
 theme = ExtResource("1_jl3sd")
-text = "button b"
+text = "FREEZE"
 uppercase = true
 
 [node name="Left" type="Button" parent="InputSetup"]
